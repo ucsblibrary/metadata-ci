@@ -7,7 +7,7 @@ require File.expand_path("../errors/invalid_date.rb", __FILE__)
 
 # Provides methods for checking the W3C-validity of dates in CSV and
 # XML MODS metadata files
-module Check
+module DateChecker
   def self.csv_columns
     @csv_columns ||= YAML.safe_load(
       File.read(
