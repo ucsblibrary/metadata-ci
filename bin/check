@@ -8,8 +8,8 @@ require File.expand_path("../../lib/date_checker.rb", __FILE__)
 
 errors = ARGV.map do |file|
   case File.extname(file)
-  # when ".xml"
-  # check_xml(file)
+  when ".xml"
+    DateChecker.mods(file)
   when ".csv"
     DateChecker.csv(file)
   else

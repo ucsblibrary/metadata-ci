@@ -7,5 +7,8 @@ csv:
   - date_other_start
   - date_other_finish
 
+# e.g., origin_info.dateIssued.text
 mods:
-  - tbd
+  - dateIssued
+  - dateCreated
+  - dateOther

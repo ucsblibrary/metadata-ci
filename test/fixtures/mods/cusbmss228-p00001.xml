@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+  <mods:titleInfo usage="primary">
+    <mods:title>Barn in Castroville, California</mods:title>
+  </mods:titleInfo>
+  <mods:name usage="primary" type="corporate" authority="naf" authorityURI="http://id.loc.gov/authorities/names" valueURI="http://id.loc.gov/authorities/names/n97003180">
+    <mods:namePart>Kiewit, John S., 1948-</mods:namePart>
+    <mods:role>
+      <mods:roleTerm type="text" authority="marcrelator" authorityURI="http://id.loc.gov/vocabulary/relators" valueURI="http://id.loc.gov/vocabulary/relators/pht">Photographer</mods:roleTerm>
+    </mods:role>
+  </mods:name>
+  <mods:typeOfResource>still image</mods:typeOfResource>
+  <mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300046300">Photographs</mods:genre>
+  <mods:originInfo>
+    <mods:dateCreated encoding="w3cdtf" keyDate="yes">1984-11-15</mods:dateCreated>
+  </mods:originInfo>
+  <mods:identifier type="local">cusbmss228-p00001</mods:identifier>
+  <mods:language>
+    <mods:languageTerm authority="iso639-2b" type="code" authorityURI="http://id.loc.gov/vocabulary/iso639-2" valueURI="http://id.loc.gov/vocabulary/iso639-2/zxx">zxx</mods:languageTerm>
+  </mods:language>
+  <mods:physicalDescription>
+    <mods:digitalOrigin>reformatted digital</mods:digitalOrigin>
+    <mods:extent>1 photograph</mods:extent>
+  </mods:physicalDescription>
+  <mods:abstract>A city on the California coast near Monterey Bay, the self-proclaimed 'Artichoke Center of the World'.</mods:abstract>
+  <mods:note type="preferred citation">[Identification of Item], John S. Kiewit Photography Collection. Mss 228. Department of Special Collections, UC Santa Barbara Library, University of California, Santa Barbara.</mods:note>
+  <mods:subject authority="lcsh" authorityURI="http://id.loc.gov/authorities/subjects">
+    <mods:topic valueURI="http://id.loc.gov/authorities/subjects/sh85011902">Barns</mods:topic>
+    <mods:geographic valueURI="http://id.loc.gov/authorities/names/n79041717">California</mods:geographic>
+  </mods:subject>
+  <mods:subject authority="lcsh" authorityURI="http://id.loc.gov/authorities/subjects">
+    <mods:geographic valueURI="http://id.loc.gov/authorities/names/n84195878">Castroville (Calif.)</mods:geographic>
+  </mods:subject>
+  <mods:subject>
+    <mods:cartographics>
+      <mods:coordinates>36.7657904, -121.758005</mods:coordinates>
+    </mods:cartographics>
+  </mods:subject>
+  <mods:relatedItem type="host">
+    <mods:titleInfo>
+      <mods:title>John S. Kiewit photography collection</mods:title>
+    </mods:titleInfo>
+    <mods:identifier type="local">Mss 228</mods:identifier>
+  </mods:relatedItem>
+  <mods:location>
+    <mods:physicalLocation valueURI="http://id.loc.gov/vocabulary/organizations/cusb">University of California, Santa Barbara</mods:physicalLocation>
+    <mods:holdingSimple>
+      <mods:copyInformation>
+        <mods:subLocation>Department of Special Collections</mods:subLocation>
+      </mods:copyInformation>
+    </mods:holdingSimple>
+  </mods:location>
+  <mods:accessCondition type="use and reproduction">Copyright has been assigned to the Regents of the University of California. All requests for permission to publish or quote from manuscripts must be submitted in writing to the Special Collections department.</mods:accessCondition>
+  <mods:extension>
+    <fileName>cusb-mss228-p00001-a.tif</fileName>
+    <copyrightStatus valueURI="http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr">Copyrighted</copyrightStatus>
+    <copyrightStatement valueURI="http://opaquenamespace.org/ns/rights/educational/">Educational use only</copyrightStatement>
+    <copyrightHolder valueURI="http://id.loc.gov/authorities/names/n85088322">University of California (System). Regents</copyrightHolder>
+  </mods:extension>
+  <mods:recordInfo>
+    <mods:descriptionStandard>local</mods:descriptionStandard>
+    <mods:recordContentSource authority="marcorg" authorityURI="http://id.loc.gov/vocabulary/organizations" valueURI="http://id.loc.gov/vocabulary/organizations/cusb">CU-SB</mods:recordContentSource>
+    <mods:languageOfCataloging usage="primary">
+      <mods:languageTerm type="code" authority="iso639-2b" authorityURI="http://id.loc.gov/vocabulary/iso639-2" valueURI="http://id.loc.gov/vocabulary/iso639-2/eng">eng</mods:languageTerm>
+    </mods:languageOfCataloging>
+    <mods:recordOrigin>Converted from CSV to MODS 3.4 using local mapping.</mods:recordOrigin>
+  </mods:recordInfo>
+</mods:mods>
