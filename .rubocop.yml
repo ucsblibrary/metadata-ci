@@ -1,0 +1,35 @@
+inherit_from:
+  - .rubocop_todo.yml
+
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.3
+  Exclude:
+    - '**/*~'
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+Style/Lambda:
+  EnforcedStyle: lambda
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: consistent_comma

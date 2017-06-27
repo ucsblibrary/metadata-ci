@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# flush output immediately
+$stdout.sync = true
+
+require File.expand_path("../../lib/check.rb", __FILE__)
+
+errors = ARGV.map do |file|
+  case File.extname(file)
+  # when ".xml"
+  # check_xml(file)
+  when ".csv"
+    Check.csv(file)
+  else
+    raise ArgumentError, "Unsupported file type: #{file}"
+  end
+end.flatten
+
+exit 0 if errors.empty?
+
+errors.each do |err|
+  $stderr.puts err.message
+end
+
+exit 1
