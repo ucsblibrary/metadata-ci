@@ -8,4 +8,17 @@ class CsvTest < MiniTest::Test
     refute_empty Check.csv_columns
     assert(Check.csv_columns.all? { |c| c.is_a? Symbol })
   end
+
+  def test_csv_checking
+    assert_empty(
+      Check.csv(File.expand_path("../fixtures/csv/pamss045.csv", __FILE__))
+    )
+
+    errors = Check.csv(
+      File.expand_path("../fixtures/csv/pamss045-invalid.csv", __FILE__)
+    )
+    refute_empty errors
+    assert_equal 3, errors.count
+    assert(errors.all? { |e| e.is_a? InvalidDate })
+  end
 end
