@@ -73,7 +73,8 @@ module Check
       mods_fields.map do |field|
         dates = begin
                   mod.origin_info.send(field).select do |d|
-                    d.encoding == "w3cdtf"
+                    d.encoding == "w3cdtf" ||
+                      d.encoding == "iso8601"
                   end.map(&:text).reject(&:empty?)
                 rescue NoMethodError
                   []
