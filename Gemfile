@@ -3,6 +3,7 @@
 source "https://rubygems.org"
 
 gem "byebug"
+gem "htmlentities"
 gem "method_source"
 gem "minitest"
 gem "mods"

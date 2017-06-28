@@ -18,6 +18,7 @@ GEM
     byebug (9.0.6)
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
+    htmlentities (4.3.4)
     i18n (0.8.4)
     iso-639 (0.2.8)
     method_source (0.8.2)
@@ -67,6 +68,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  htmlentities
   method_source
   minitest
   mods
