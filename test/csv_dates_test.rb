@@ -28,6 +28,6 @@ class CsvTest < MiniTest::Test
     )
     refute_empty errors
     assert_equal 1, errors.count
-    assert(errors.all? { |e| e.is_a? ArgumentError })
+    assert(errors.all? { |e| e.is_a? WrongEncoding })
   end
 end

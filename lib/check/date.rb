@@ -6,6 +6,7 @@ require "mods"
 require "w3c_datetime"
 require "yaml"
 require File.expand_path("../../errors/invalid_date.rb", __FILE__)
+require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
 
 module Check
   # Provides methods for checking the W3C-validity of dates in CSV and
@@ -58,7 +59,7 @@ module Check
       end.flatten.compact.select { |r| r.is_a? InvalidDate }
     # most likely an encoding error
     rescue ArgumentError => e
-      [ArgumentError.new("#{file}: #{e.message}")]
+      [WrongEncoding.new("#{file}: #{e.message}")]
     end
 
     # @return [Array<String>]

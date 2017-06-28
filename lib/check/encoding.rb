@@ -11,6 +11,10 @@ module Check
     def self.is?(file, encoding = ::Encoding::UTF_8)
       raw = File.read(file)
 
+      # calling #split will trigger invalid byte errors:
+      # https://robots.thoughtbot.com/fight-back-utf-8-invalid-byte-sequences
+      raw.split(" ")
+
       if File.extname(file) == ".xml" &&
          !raw.downcase.include?('encoding="utf-8"')
         raise WrongEncoding,
@@ -22,6 +26,8 @@ module Check
       raise WrongEncoding,
             "#{file} should be encoded as #{encoding.name}, "\
             "is #{raw.encoding.name}"
+    rescue ArgumentError => e
+      raise WrongEncoding, "#{file}, #{e.message}"
     end
 
     # @param [Array<String>]
