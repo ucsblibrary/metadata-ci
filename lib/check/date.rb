@@ -20,7 +20,7 @@ module Check
         when ".csv"
           csv(file)
         else
-          raise ArgumentError, "Unsupported file type: #{file}"
+          ArgumentError.new("#{file}: Unsupported file type")
         end
       end.flatten
     end
