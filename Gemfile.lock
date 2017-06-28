@@ -7,6 +7,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     ast (2.3.0)
+    byebug (9.0.6)
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
     i18n (0.8.4)
@@ -57,6 +58,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug
   method_source
   minitest
   mods
