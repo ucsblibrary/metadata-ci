@@ -13,31 +13,22 @@ class DateTemplateTest < MiniTest::Test
     assert_equal "%Y-%m", Check::Date.template(1_234_567)
     assert_equal "%Y-%m", Check::Date.template(:bumbler)
 
-    assert_equal "%4Y-%m-%d", Check::Date.template("1997-07-16")
-    assert_equal "%4Y-%m-%d", Check::Date.template(1_123_456_789)
-    assert_equal "%4Y-%m-%d", Check::Date.template(:hellokitty)
+    assert_equal "%F", Check::Date.template("1997-07-16")
+    assert_equal "%F", Check::Date.template(1_123_456_789)
+    assert_equal "%F", Check::Date.template(:hellokitty)
 
-    assert_equal "%4Y-%m-%dT%R%:z",
-                 Check::Date.template("1997-07-16T19:20+01:00")
-    assert_equal "%4Y-%m-%dT%R%:z",
-                 Check::Date.template(3_333_333_333_333_333_333_333)
-    assert_equal "%4Y-%m-%dT%R%:z",
-                 Check::Date.template(:iamasymbolthatis22char)
+    assert_equal "%FT%R%:z", Check::Date.template("1997-07-16T19:20+01:00")
+    assert_equal "%FT%R%:z", Check::Date.template(3_333_333_333_333_333_333_333)
+    assert_equal "%FT%R%:z", Check::Date.template(:iamasymbolthatis22char)
 
-    assert_equal "%4Y-%m-%dT%T%:z",
-                 Check::Date.template("1997-07-16T19:20:30+01:00")
-    assert_equal "%4Y-%m-%dT%T%:z",
-                 Check::Date.template(:iamasymbolthatis25charact)
-    assert_equal "%4Y-%m-%dT%T%:z",
-                 Check::Date.template(3_333_333_333_333_333_333_333_333)
+    assert_equal "%FT%T%:z", Check::Date.template("1997-07-16T19:20:30+01:00")
+    assert_equal "%FT%T%:z", Check::Date.template(3_333_333_333_333_333_333_333_333)
+    assert_equal "%FT%T%:z", Check::Date.template(:iamasymbolthatis25charact)
 
-    assert_equal "%4Y-%m-%dT%T.%L%:z",
-                 Check::Date.template("1997-07-16T19:20:30.45+01:00")
-    assert_equal "%4Y-%m-%dT%T.%L%:z",
+    assert_equal "%FT%T.%L%:z", Check::Date.template("1997-07-16T19:20:30.45+01:00")
+    assert_equal "%FT%T.%L%:z",
                  Check::Date.template(3_333_444_333_666_333_333_333_333_333)
-    assert_equal "%4Y-%m-%dT%T.%L%:z",
-                 Check::Date.template(:iamasymbolthatis28characters)
-
+    assert_equal "%FT%T.%L%:z", Check::Date.template(:iamasymbolthatis28characters)
   end
 
   def test_template_bad
