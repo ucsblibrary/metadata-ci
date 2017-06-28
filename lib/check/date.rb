@@ -109,13 +109,13 @@ module Check
       when 7
         "%Y-%m"
       when 10
-        "%F"
+        "%4Y-%m-%d"
       when 22
-        "%FT%R%:z"
+        "%4Y-%m-%dT%R%:z"
       when 25
-        "%FT%T%:z"
+        "%4Y-%m-%dT%T%:z"
       when 28
-        "%FT%T.%L%:z"
+        "%4Y-%m-%dT%T.%L%:z"
       else
         raise InvalidDate
       end
