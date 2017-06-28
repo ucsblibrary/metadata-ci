@@ -10,6 +10,19 @@ module Check
   # Provides methods for checking the W3C-validity of dates in CSV and
   # XML MODS metadata files
   module Date
+    def self.batch(files)
+      files.map do |file|
+        case File.extname(file)
+        when ".xml"
+          mods(file)
+        when ".csv"
+          csv(file)
+        else
+          raise ArgumentError, "Unsupported file type: #{file}"
+        end
+      end.flatten
+    end
+
     def self.date_fields
       @date_fields ||= YAML.safe_load(
         File.read(

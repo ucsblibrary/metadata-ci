@@ -6,16 +6,10 @@ $stdout.sync = true
 
 require File.expand_path("../../lib/check.rb", __FILE__)
 
-errors = ARGV.map do |file|
-  case File.extname(file)
-  when ".xml"
-    Check::Date.mods(file)
-  when ".csv"
-    Check::Date.csv(file)
-  else
-    raise ArgumentError, "Unsupported file type: #{file}"
-  end
-end.flatten
+errors = [
+  Check::Encoding.batch(ARGV),
+  Check::Date.batch(ARGV),
+].flatten
 
 exit 0 if errors.empty?
 
