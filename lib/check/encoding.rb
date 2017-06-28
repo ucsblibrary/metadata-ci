@@ -12,7 +12,7 @@ module Check
       raw = File.read(file)
 
       if File.extname(file) == ".xml" &&
-         !raw.include?('encoding="UTF-8"')
+         !raw.downcase.include?('encoding="utf-8"')
         raise WrongEncoding,
               "#{file} is missing the 'encoding=\"UTF-8\"' declaration."
       end
