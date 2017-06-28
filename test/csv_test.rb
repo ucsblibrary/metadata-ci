@@ -21,4 +21,13 @@ class CsvTest < MiniTest::Test
     assert_equal 3, errors.count
     assert(errors.all? { |e| e.is_a? InvalidDate })
   end
+
+  def test_malformed_csv
+    errors = Check::Date.csv(
+      File.expand_path("../fixtures/csv/mcpeak-utf8problems.csv", __FILE__)
+    )
+    refute_empty errors
+    assert_equal 1, errors.count
+    assert(errors.all? { |e| e.is_a? ArgumentError })
+  end
 end
