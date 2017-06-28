@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 require "minitest/autorun"
-require File.expand_path("../../lib/date_checker.rb", __FILE__)
+require File.expand_path("../../lib/check.rb", __FILE__)
 
 class ModsTest < MiniTest::Test
   def test_mods_fields
-    refute_empty DateChecker.mods_fields
-    assert(DateChecker.mods_fields.all? { |c| c.is_a? String })
+    refute_empty Check::Date.mods_fields
+    assert(Check::Date.mods_fields.all? { |c| c.is_a? String })
   end
 
   def test_mods_checking
     assert_empty(
-      DateChecker.mods(
+      Check::Date.mods(
         File.expand_path("../fixtures/mods/cusbmss228-p00001.xml", __FILE__)
       )
     )
 
-    errors = DateChecker.mods(
+    errors = Check::Date.mods(
       File.expand_path("../fixtures/mods/cusbmss228-p00001-invalid.xml",
                        __FILE__)
     )

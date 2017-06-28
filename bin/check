@@ -4,14 +4,14 @@
 # flush output immediately
 $stdout.sync = true
 
-require File.expand_path("../../lib/date_checker.rb", __FILE__)
+require File.expand_path("../../lib/check.rb", __FILE__)
 
 errors = ARGV.map do |file|
   case File.extname(file)
   when ".xml"
-    DateChecker.mods(file)
+    Check::Date.mods(file)
   when ".csv"
-    DateChecker.csv(file)
+    Check::Date.csv(file)
   else
     raise ArgumentError, "Unsupported file type: #{file}"
   end

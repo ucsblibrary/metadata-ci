@@ -13,9 +13,6 @@ Layout/MultilineMethodCallIndentation:
 Style/AsciiComments:
   Enabled: false
 
-Style/ClassAndModuleChildren:
-  EnforcedStyle: compact
-
 Style/Lambda:
   EnforcedStyle: lambda
 
