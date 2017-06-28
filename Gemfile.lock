@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/dunn/w3c_datetime.git
+  revision: ed556c6a52fc41a950f93bf9ecfa9e9478622fe0
+  ref: ed556c6a52fc41a950f93bf9ecfa9e9478622fe0
+  branch: errors
+  specs:
+    w3c_datetime (0.0.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -66,6 +74,7 @@ DEPENDENCIES
   pry-doc
   rake
   rubocop (~> 0.49.0)
+  w3c_datetime!
 
 BUNDLED WITH
    1.14.6

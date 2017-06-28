@@ -3,6 +3,7 @@
 require "csv"
 require "date"
 require "mods"
+require "w3c_datetime"
 require "yaml"
 require File.expand_path("../../errors/invalid_date.rb", __FILE__)
 
@@ -44,7 +45,7 @@ module Check
           next if row[col].nil?
 
           begin
-            DateTime.strptime(row[col].to_s, template(row[col]))
+            W3cDatetime.parse(row[col].to_s)
           rescue ArgumentError, InvalidDate
             InvalidDate.new(
               "#{file}:\n"\
@@ -84,7 +85,7 @@ module Check
 
         dates.map do |date|
           begin
-            DateTime.strptime(date, template(date))
+            W3cDatetime.parse(date)
           rescue ArgumentError, InvalidDate
             InvalidDate.new(
               "#{file}:\n"\
@@ -95,30 +96,6 @@ module Check
           end
         end
       end.flatten.compact.select { |r| r.is_a? InvalidDate }
-    end
-
-    # https://www.w3.org/TR/1998/NOTE-datetime-19980827
-    # https://ruby-doc.org/core-2.2.0/Time.html#method-i-strftime
-    #
-    # @param [#to_s] date
-    # @return [Date]
-    def self.template(date)
-      case date.to_s.length
-      when 4
-        "%Y"
-      when 7
-        "%Y-%m"
-      when 10
-        "%F"
-      when 22
-        "%FT%R%:z"
-      when 25
-        "%FT%T%:z"
-      when 28
-        "%FT%T.%L%:z"
-      else
-        raise InvalidDate
-      end
     end
   end
 end
