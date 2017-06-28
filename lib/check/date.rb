@@ -42,6 +42,9 @@ module Check
           end
         end
       end.flatten.compact.select { |r| r.is_a? InvalidDate }
+    # most likely an encoding error
+    rescue ArgumentError => e
+      [ArgumentError.new("#{file}: #{e.message}")]
     end
 
     # @return [Array<String>]
