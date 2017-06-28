@@ -8,6 +8,7 @@ require File.expand_path("../../lib/check.rb", __FILE__)
 
 errors = [
   Check::Encoding.batch(ARGV),
+  Check::Entities.batch(ARGV),
   Check::Date.batch(ARGV),
 ].flatten
 
