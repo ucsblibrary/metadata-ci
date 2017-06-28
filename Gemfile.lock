@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/dunn/w3c_datetime.git
-  revision: ed556c6a52fc41a950f93bf9ecfa9e9478622fe0
-  ref: ed556c6a52fc41a950f93bf9ecfa9e9478622fe0
+  revision: dc98e11d47782b4971ab90c3711b23a89d04c7f5
+  ref: dc98e11d47782b4971ab90c3711b23a89d04c7f5
   branch: errors
   specs:
     w3c_datetime (0.0.4)
@@ -9,7 +9,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.1.1)
+    activesupport (5.1.2)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
       minitest (~> 5.1)
@@ -23,13 +23,13 @@ GEM
     method_source (0.8.2)
     mini_portile2 (2.2.0)
     minitest (5.10.2)
-    mods (2.0.3)
+    mods (2.1.0)
       iso-639
       nokogiri
-      nom-xml (~> 0.5.2)
+      nom-xml (~> 0.6.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
-    nom-xml (0.5.4)
+    nom-xml (0.6.0)
       activesupport (>= 3.2.18)
       i18n
       nokogiri
