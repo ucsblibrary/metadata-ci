@@ -4,9 +4,9 @@ A CLI/library for validating ADRL metadata.
 
 ## Adding a new checker
 
-To add a new checker, provide a method that accepts `ARGV` as its
-parameter and returns an array of `MetadataError`s; then add it to the
-array in `bin/check`.
+To add a new checker, provide a method that accepts an array of paths
+as its only parameter and returns an array of `MetadataError`s; then
+add it to the array in `bin/check`.
 
 ## CLI
 
