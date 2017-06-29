@@ -8,22 +8,9 @@ require "find"
 require "rubygems"
 require "bundler/setup"
 require File.expand_path("../../lib/check.rb", __FILE__)
+require File.expand_path("../../lib/util.rb", __FILE__)
 
-# For each element, if it's a file, add it to the array, otherwise
-# drill down and add each file within to the array
-data = ARGV.map do |arg|
-  if File.file?(arg)
-    arg
-  else
-    next unless Dir.exist?(arg)
-    datas = []
-    Find.find(arg) do |path|
-      next if File.directory?(path)
-      datas << path
-    end
-    datas
-  end
-end.flatten.compact
+data = Util.find_paths(ARGV)
 
 errors = [
   Check::Encoding.batch(data),
@@ -38,7 +25,7 @@ end
 
 $stderr.puts(errors.map do |e|
   <<~EOS
-    * #{e.file}:
+    * #{Util.bold(e.file)}:
       #{e.problem}
 
   EOS
