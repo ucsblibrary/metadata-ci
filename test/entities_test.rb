@@ -16,4 +16,20 @@ class EntitiesTest < MiniTest::Test
       )
     )
   end
+
+  def test_bad_csv
+    refute_empty(
+      Check::Entities.batch(
+        [File.expand_path("../fixtures/csv/html-entities.csv", __FILE__)],
+      )
+    )
+  end
+
+  def test_bad_mods
+    refute_empty(
+      Check::Entities.batch(
+        [File.expand_path("../fixtures/mods/html-entities.xml", __FILE__)],
+      )
+    )
+  end
 end

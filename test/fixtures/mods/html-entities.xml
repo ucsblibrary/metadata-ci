@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd"><mods:titleInfo usage="primary">
+			<mods:title>Art Acord on horse in field</mods:title>
+		</mods:titleInfo><mods:name usage="primary" type="corporate" authority="naf" authorityURI="http://id.loc.gov/authorities/names" valueURI="http://id.loc.gov/authorities/names/n87914041">
+			<mods:namePart>American Film Manufacturing Company</mods:namePart>
+			<mods:role>
+				<mods:roleTerm type="text" authority="marcrelator" authorityURI="http://id.loc.gov/vocabulary/relators" valueURI="http://id.loc.gov/vocabulary/relators/cre">Creator</mods:roleTerm>
+			</mods:role>
+		</mods:name><mods:typeOfResource authority="lcrt" authorityURI="http://id.loc.gov/vocabulary/resourceTypes" valueURI="http://id.loc.gov/vocabulary/resourceTypes/img">still image</mods:typeOfResource><mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300134920">Gelatin dry plate negatives</mods:genre><mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300046300">Photographs</mods:genre><mods:originInfo>
+			<mods:dateCreated>[circa 1910s]</mods:dateCreated>
+			<mods:dateCreated encoding="w3cdtf" point="start" qualifier="approximate" keyDate="yes">1910</mods:dateCreated>
+			<mods:dateCreated encoding="w3cdtf" point="end" qualifier="approximate">1919</mods:dateCreated>
+		</mods:originInfo><mods:identifier type="local">cusbspcsbhc78_100010</mods:identifier><mods:language>
+			<mods:languageTerm authority="iso639-2b" type="code" authorityURI="http://id.loc.gov/vocabulary/iso639-2" valueURI="http://id.loc.gov/vocabulary/iso639-2/zxx">zxx</mods:languageTerm>
+		</mods:language>
+		<mods:note>We give a construction of Turaev-Viro type (3+1)-TQFT out of a G-crossed braided spherical fusion category for G a finite group. The resulting invariant of 4-manifolds generalizes several known invariants in literature such as the Crane-Yetter invariant and Yetter&apos;s invariant from homotopy 2-types. Some concrete examples will be provided to show the calculations. If the category is concentrated only at the sector indexed by the trivial group element, a co-cycle in H 4(G,U(1)) can be introduced to produce another invariant, which reduces to the twisted Dijkgraaf-Witten theory in a special case. It can be shown that with a G-crossed braided spherical fusion category, one can construct a monoidal 2-category with certain extra structure, but these structures do not satisfy all the axioms of a spherical 2-category given by M. Mackaay. Although not proven, it is believed that our invariant is strictly different from other known invariants. It remains to see if the invariant has the power to detect any smooth structures.</mods:note>
+		<mods:physicalDescription>
+			<mods:digitalOrigin>digitized other analog</mods:digitalOrigin>
+			<mods:extent>1 photograph : glass plate negative ; 13 x 18 cm (5 x 7
+				format)</mods:extent>
+		</mods:physicalDescription><mods:abstract>We give a construction of Turaev-Viro type (3+1)-TQFT out of a G-crossed braided spherical fusion category for G a finite group. The resulting invariant of 4-manifolds generalizes several known invariants in literature such as the Crane-Yetter invariant and Yetter&#x27;s invariant from homotopy 2-types. Some concrete examples will be provided to show the calculations. If the category is concentrated only at the sector indexed by the trivial group element, a co-cycle in H 4(G,U(1)) can be introduced to produce another invariant, which reduces to the twisted Dijkgraaf-Witten theory in a special case. It can be shown that with a G-crossed braided spherical fusion category, one can construct a monoidal 2-category with certain extra structure, but these structures do not satisfy all the axioms of a spherical 2-category given by M. Mackaay. Although not proven, it is believed that our invariant is strictly different from other known invariants. It remains to see if the invariant has the power to detect any smooth structures.</mods:abstract><mods:note type="acquisition">Gift from Pat Eagle-Schnetzer and Ronald Conway, and purchase
+			from Joan Cota (Conway children), 2009.</mods:note><mods:note type="preferred citation">[Identification of Item], Joel Conway / Flying A Studio
+			Photograph Collection. SBHC Mss 78. Department of Special Research Collections, UC Santa
+			Barbara Library, University of California, Santa Barbara.</mods:note><mods:subject>
+			<mods:name type="personal" authority="naf" authorityURI="http://id.loc.gov/authorities/names" valueURI="http://id.loc.gov/authorities/names/n00041631">
+				<mods:namePart>Acord, Art</mods:namePart>
+				<mods:namePart type="date">1890-1931</mods:namePart>
+			</mods:name>
+		</mods:subject><mods:subject>
+			<mods:name type="corporate" authority="naf" authorityURI="http://id.loc.gov/authorities/names" valueURI="http://id.loc.gov/authorities/names/n87914041">
+				<mods:namePart>American Film Manufacturing Company</mods:namePart>
+			</mods:name>
+		</mods:subject><mods:subject authority="lctgm" authorityURI="http://id.loc.gov/vocabulary/graphicMaterials">
+			<mods:topic valueURI="http://id.loc.gov/vocabulary/graphicMaterials/tgm000067">Actors</mods:topic>
+		</mods:subject><mods:relatedItem type="host">
+			<mods:titleInfo>
+				<mods:title>Joel Conway / Flying A Studio photograph collection </mods:title>
+			</mods:titleInfo>
+			<mods:identifier type="local">SBHC Mss 78</mods:identifier>
+		</mods:relatedItem><mods:relatedItem type="series">
+			<mods:titleInfo>
+				<mods:title>Series 4: Glass Negatives</mods:title>
+			</mods:titleInfo>
+		</mods:relatedItem><mods:location>
+			<mods:physicalLocation valueURI="http://id.loc.gov/vocabulary/organizations/cusb">University of California, Santa Barbara</mods:physicalLocation>
+			<mods:holdingSimple>
+				<mods:copyInformation>
+					<mods:subLocation>Department of Special Research Collections</mods:subLocation>
+				</mods:copyInformation>
+			</mods:holdingSimple>
+		</mods:location><mods:accessCondition type="use and reproduction">Transmission or reproduction of materials protected by copyright beyond that allowed by fair use requires the written permission of the copyright owners. In addition, the reproduction of some materials may be restricted by terms of gift or purchase agreements, donor restrictions, privacy and publicity rights, licensing and trademarks (contact the department of Special Research Collections at the UC Santa Barbara Library for more information). Works not in the public domain cannot be commercially exploited without permission of the copyright owner. Responsibility for any use rests exclusively with the user.</mods:accessCondition><mods:extension>
+			<fileName>cusbspcsbhc78_100010_m.tif</fileName>
+			<copyrightStatus valueURI="http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk">Unknown</copyrightStatus>
+			<copyrightStatement valueURI="http://rightsstatements.org/vocab/CNE/1.0/">Copyright Undetermined</copyrightStatement>
+			<flagged/>
+		</mods:extension><mods:recordInfo>
+			<mods:descriptionStandard>local</mods:descriptionStandard>
+			<mods:recordContentSource authority="marcorg" authorityURI="http://id.loc.gov/vocabulary/organizations" valueURI="http://id.loc.gov/vocabulary/organizations/cusb">CU-SB</mods:recordContentSource>
+			<mods:languageOfCataloging usage="primary">
+				<mods:languageTerm type="code" authority="iso639-2b" authorityURI="http://id.loc.gov/vocabulary/iso639-2" valueURI="http://id.loc.gov/vocabulary/iso639-2/eng">eng</mods:languageTerm>
+			</mods:languageOfCataloging>
+			<mods:recordOrigin>Converted from CSV to MODS 3.4 using local
+				mapping.</mods:recordOrigin>
+		</mods:recordInfo></mods:mods>
