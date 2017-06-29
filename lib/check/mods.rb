@@ -1,34 +1,45 @@
 # frozen_string_literal: true
 
+require "net/http"
 require File.expand_path("../../errors/invalid_mods.rb", __FILE__)
 require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
 
 module Check
   # Checks that MODS XML files follow the schema
   module MODS
-    SCHEMA = File.read(
-      File.expand_path("../../../schema/mods-3-6.xsd", __FILE__)
-    )
-
     # @param [String, Array<String>] files
     # @return [Array<EncodedEntity>]
     def self.batch(*files)
-      xsd = Nokogiri::XML::Schema(SCHEMA)
-
       files.flatten.map do |file|
-        validate(file, xsd)
+        next unless File.extname(file) == ".xml"
+
+        validate(file)
       end.flatten.compact.select { |r| r.is_a? InvalidMODS }
     end
 
+    # @param [URL, String] url
+    # @return [Nokogiri::XML::Schema]
+    def self.schema_from_url(url)
+      Nokogiri::XML::Schema(
+        Net::HTTP.get(
+          (url.is_a?(URI) ? url : URI(url))
+        )
+      )
+    end
+
     # @param [String] file
-    # @param [Nokogiri::XML::Schema] xsd
     # @return [Array<MetadataError>]
-    def self.validate(file, xsd)
-      return unless File.extname(file) == ".xml"
-
+    def self.validate(file)
       xml = Nokogiri::XML(File.read(file))
+      schema = xml
+        .xpath("mods:mods")
+        .first
+        .attributes["schemaLocation"]
+        .text
+        .split(" ")
+        .last
 
-      xsd.validate(xml).map do |error|
+      schema_from_url(schema).validate(xml).map do |error|
         InvalidMODS.new(file: file, problem: error.to_s)
       end
     # most likely an encoding error
