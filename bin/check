@@ -8,7 +8,6 @@ require "find"
 require "rubygems"
 require "bundler/setup"
 require File.expand_path("../../lib/check.rb", __FILE__)
-require File.expand_path("../../lib/util.rb", __FILE__)
 
 # For each element, if it's a file, add it to the array, otherwise
 # drill down and add each file within to the array
@@ -39,7 +38,7 @@ end
 
 $stderr.puts(errors.map do |e|
   <<~EOS
-    * #{Util.bold(e.file)}
+    * #{e.file}:
       #{e.problem}
 
   EOS

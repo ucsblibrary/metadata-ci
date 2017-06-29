@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
-require File.expand_path("../../util.rb", __FILE__)
 
 module Check
   # Checks that files are encoded as UTF-8; see
