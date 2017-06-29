@@ -11,7 +11,9 @@ class CsvTest < MiniTest::Test
 
   def test_csv_checking
     assert_empty(
-      Check::Date.csv(File.expand_path("../fixtures/csv/pamss045.csv", __FILE__))
+      Check::Date.csv(
+        File.expand_path("../fixtures/csv/pamss045.csv", __FILE__)
+      )
     )
 
     errors = Check::Date.csv(
