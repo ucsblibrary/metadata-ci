@@ -16,7 +16,7 @@ errors = [
   Check::Encoding.batch(data),
   Check::Entities.batch(data),
   Check::Date.batch(data),
-].flatten
+].flatten.sort_by(&:file)
 
 if errors.empty?
   puts "No errors found!"
