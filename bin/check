@@ -4,6 +4,8 @@
 # flush output immediately
 $stdout.sync = true
 
+require "rubygems"
+require "bundler/setup"
 require File.expand_path("../../lib/check.rb", __FILE__)
 
 errors = [
