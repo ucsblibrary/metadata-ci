@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
+require File.expand_path("../../util.rb", __FILE__)
 
 module Check
   # Checks that files are encoded as UTF-8; see
@@ -19,10 +20,10 @@ module Check
       return true if raw.encoding == encoding
 
       raise WrongEncoding,
-            "#{file} should be encoded as #{encoding.name}, "\
-            "is #{raw.encoding.name}"
+            "#{Util.bold(file)}:\n  "\
+            "Expected #{encoding.name}, got #{raw.encoding.name}"
     rescue ArgumentError => e
-      raise WrongEncoding, "#{file}, #{e.message}"
+      raise WrongEncoding, "#{Util.bold(file)}:\n  #{e.message}"
     end
 
     def self.check_for_declaration(filename, contents)
@@ -30,7 +31,8 @@ module Check
                     !contents.downcase.include?('encoding="utf-8"')
 
       raise WrongEncoding,
-            "#{filename} is missing the 'encoding=\"UTF-8\"' declaration."
+            "#{Util.bold(filename)}:\n  "\
+            "Missing 'encoding=\"UTF-8\"' declaration."
     end
 
     # @param [Array<String>]

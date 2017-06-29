@@ -7,6 +7,7 @@ require "w3c_datetime"
 require "yaml"
 require File.expand_path("../../errors/invalid_date.rb", __FILE__)
 require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
+require File.expand_path("../../util.rb", __FILE__)
 
 module Check
   # Provides methods for checking the W3C-validity of dates in CSV and
@@ -14,7 +15,7 @@ module Check
   module Date
     INVALID_DATE_MSG =
       "%<file>s:\n  %<locator>s: "\
-      "'\033[1;39m%<value>s\033[0m' is not W3C-valid "\
+      "'%<value>s' is not W3C-valid "\
       "(https://www.w3.org/TR/1998/NOTE-datetime-19980827)."
 
     def self.batch(files)
@@ -52,14 +53,14 @@ module Check
 
           validate(
             row[col].to_s,
-            file: file,
-            locator: "'#{col}' in row #{i + 1}"
+            file: Util.bold(file),
+            locator: "#{col} in row #{i + 1}"
           )
         end
       end.flatten.compact.select { |r| r.is_a? InvalidDate }
     # most likely an encoding error
     rescue ArgumentError => e
-      [WrongEncoding.new("#{file}: #{e.message}")]
+      [WrongEncoding.new("#{Util.bold(file)}:\n  #{e.message}")]
     end
 
     # @return [Array<String>]
@@ -77,8 +78,8 @@ module Check
 
         dates.map do |date|
           validate(date,
-                   file: file,
-                   locator: "Value of '#{field}'")
+                   file: Util.bold(file),
+                   locator: "Value of #{field}")
         end
       end.flatten.compact.select { |r| r.is_a? InvalidDate }
     end

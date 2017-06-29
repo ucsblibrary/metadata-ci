@@ -16,8 +16,6 @@ errors = [
 
 exit 0 if errors.empty?
 
-errors.each do |err|
-  $stderr.puts err.message
-end
+$stderr.puts errors.map { |e| "* #{e.message}" }.join("\n\n")
 
 exit 1

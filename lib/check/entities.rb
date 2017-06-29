@@ -33,14 +33,14 @@ module Check
 
         matches.map do |match|
           EncodedEntity.new(
-            "#{file}:\n  "\
+            "#{Util.bold(file)}:\n  "\
             "HTML-encoded character '#{format_match(match)}' on line #{i + 1}"
           )
         end
       end
     # most likely an encoding error
     rescue ArgumentError => e
-      [WrongEncoding.new("#{file}: #{e.message}")]
+      [WrongEncoding.new("#{Util.bold(file)}:\n  #{e.message}")]
     end
 
     def self.format_match(match)
