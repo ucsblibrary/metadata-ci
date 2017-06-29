@@ -72,6 +72,7 @@ DEPENDENCIES
   method_source
   minitest
   mods
+  nokogiri
   pry
   pry-doc
   rake
