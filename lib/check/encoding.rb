@@ -15,12 +15,7 @@ module Check
       # https://robots.thoughtbot.com/fight-back-utf-8-invalid-byte-sequences
       raw.split(" ")
 
-      if File.extname(file) == ".xml" &&
-         !raw.downcase.include?('encoding="utf-8"')
-        raise WrongEncoding,
-              "#{file} is missing the 'encoding=\"UTF-8\"' declaration."
-      end
-
+      check_for_declaration(file, raw)
       return true if raw.encoding == encoding
 
       raise WrongEncoding,
@@ -28,6 +23,14 @@ module Check
             "is #{raw.encoding.name}"
     rescue ArgumentError => e
       raise WrongEncoding, "#{file}, #{e.message}"
+    end
+
+    def self.check_for_declaration(filename, contents)
+      return unless File.extname(filename) == ".xml" &&
+                    !contents.downcase.include?('encoding="utf-8"')
+
+      raise WrongEncoding,
+            "#{filename} is missing the 'encoding=\"UTF-8\"' declaration."
     end
 
     # @param [Array<String>]
