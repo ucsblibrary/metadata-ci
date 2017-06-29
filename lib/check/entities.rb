@@ -6,6 +6,12 @@ require File.expand_path("../../errors/encoded_entity.rb", __FILE__)
 module Check
   # Checks for encoded HTML entities
   module Entities
+    ENTITY_PATTERNS = {
+      "0" => "&%<str>s;",
+      "1" => "&#%<str>s;",
+      "2" => "&#x%<str>s;",
+    }
+
     # @param [String, Array<String>] files
     # @return [Array<EncodedEntity>]
     def self.batch(*files)
@@ -19,10 +25,19 @@ module Check
           next if matches.nil?
 
           matches.map do |match|
-            EncodedEntity.new(
-              "#{file}:\n  "\
-              "HTML-encoded character '&#{match.first};' on line #{i + 1}"
-            )
+            # There are three types of HTML entities, so the match is
+            # an Array with three elements, @see
+            # https://github.com/threedaymonk/htmlentities/blob/master/lib/htmlentities/decoder.rb#L35
+            match.map.with_index do |pattern, pos|
+              next if pattern.nil?
+
+              entity = format(ENTITY_PATTERNS[pos.to_s], str: pattern)
+
+              EncodedEntity.new(
+                "#{file}:\n  "\
+                "HTML-encoded character '#{entity}' on line #{i + 1}"
+              )
+            end
           end
         end
       end.flatten.compact.select { |r| r.is_a? EncodedEntity }
