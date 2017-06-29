@@ -20,7 +20,7 @@ class EntitiesTest < MiniTest::Test
   def test_bad_csv
     refute_empty(
       Check::Entities.batch(
-        [File.expand_path("../fixtures/csv/html-entities.csv", __FILE__)],
+        [File.expand_path("../fixtures/csv/html-entities.csv", __FILE__)]
       )
     )
   end
@@ -28,7 +28,7 @@ class EntitiesTest < MiniTest::Test
   def test_bad_mods
     refute_empty(
       Check::Entities.batch(
-        [File.expand_path("../fixtures/mods/html-entities.xml", __FILE__)],
+        [File.expand_path("../fixtures/mods/html-entities.xml", __FILE__)]
       )
     )
   end

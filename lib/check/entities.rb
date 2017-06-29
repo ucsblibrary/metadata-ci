@@ -10,7 +10,7 @@ module Check
       "0" => "&%<str>s;",
       "1" => "&#%<str>s;",
       "2" => "&#x%<str>s;",
-    }
+    }.freeze
 
     # @param [String, Array<String>] files
     # @return [Array<EncodedEntity>]
