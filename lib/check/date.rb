@@ -7,15 +7,13 @@ require "w3c_datetime"
 require "yaml"
 require File.expand_path("../../errors/invalid_date.rb", __FILE__)
 require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
-require File.expand_path("../../util.rb", __FILE__)
 
 module Check
   # Provides methods for checking the W3C-validity of dates in CSV and
   # XML MODS metadata files
   module Date
     INVALID_DATE_MSG =
-      "%<file>s:\n  %<locator>s: "\
-      "'%<value>s' is not W3C-valid "\
+      "%<locator>s: '%<value>s' is not W3C-valid "\
       "(https://www.w3.org/TR/1998/NOTE-datetime-19980827)."
 
     def self.batch(files)
@@ -26,7 +24,8 @@ module Check
         when ".csv"
           csv(file)
         else
-          ArgumentError.new("#{file}: Unsupported file type")
+          MetadataError.new(file: file,
+                            problem: "Unsupported file type")
         end
       end.flatten
     end
@@ -52,15 +51,15 @@ module Check
           next if row[col].nil?
 
           validate(
-            row[col].to_s,
-            file: Util.bold(file),
-            locator: "#{col} in row #{i + 1}"
+            datestring: row[col].to_s,
+            file: file,
+            formatting: { locator: "#{col} in row #{i + 1}" }
           )
         end
       end.flatten.compact.select { |r| r.is_a? InvalidDate }
     # most likely an encoding error
     rescue ArgumentError => e
-      [WrongEncoding.new("#{Util.bold(file)}:\n  #{e.message}")]
+      [WrongEncoding.new(file: file, problem: e.message)]
     end
 
     # @return [Array<String>]
@@ -77,9 +76,9 @@ module Check
         dates = find_encoded_dates(mod, field, %w[w3cdtf iso8601])
 
         dates.map do |date|
-          validate(date,
-                   file: Util.bold(file),
-                   locator: "Value of #{field}")
+          validate(datestring: date,
+                   file: file,
+                   formatting: { locator: "Value of #{field}" })
         end
       end.flatten.compact.select { |r| r.is_a? InvalidDate }
     end
@@ -95,12 +94,15 @@ module Check
       []
     end
 
-    def self.validate(datestring, formatting)
+    def self.validate(datestring:, file:, formatting:)
       W3cDatetime.parse(datestring)
     rescue ArgumentError, InvalidDate
       InvalidDate.new(
-        format(INVALID_DATE_MSG,
-               formatting.merge(value: datestring))
+        file: file,
+        problem: format(
+          INVALID_DATE_MSG,
+          formatting.merge(value: datestring)
+        )
       )
     end
   end

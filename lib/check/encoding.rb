@@ -19,20 +19,24 @@ module Check
       check_for_declaration(file, raw)
       return true if raw.encoding == encoding
 
-      raise WrongEncoding,
-            "#{Util.bold(file)}:\n  "\
-            "Expected #{encoding.name}, got #{raw.encoding.name}"
+      raise(
+        WrongEncoding.new(
+          file: file,
+          problem: "Expected #{encoding.name}, got #{raw.encoding.name}"
+        )
+      )
     rescue ArgumentError => e
-      raise WrongEncoding, "#{Util.bold(file)}:\n  #{e.message}"
+      raise WrongEncoding.new(file: file, problem: e.message)
     end
 
     def self.check_for_declaration(filename, contents)
       return unless File.extname(filename) == ".xml" &&
                     !contents.downcase.include?('encoding="utf-8"')
 
-      raise WrongEncoding,
-            "#{Util.bold(filename)}:\n  "\
-            "Missing 'encoding=\"UTF-8\"' declaration."
+      raise(
+        WrongEncoding.new(file: filename,
+                          problem: "Missing 'encoding=\"UTF-8\"' declaration.")
+      )
     end
 
     # @param [Array<String>]
