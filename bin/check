@@ -32,7 +32,10 @@ errors = [
   Check::Date.batch(data),
 ].flatten
 
-exit 0 if errors.empty?
+if errors.empty?
+  puts "No errors found!"
+  exit 0
+end
 
 $stderr.puts(errors.map do |e|
   <<~EOS
