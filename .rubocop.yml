@@ -9,6 +9,10 @@ AllCops:
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
+Metrics/MethodLength:
+  Exclude:
+    - 'test/*'
+
 Style/AsciiComments:
   Enabled: false
 

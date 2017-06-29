@@ -50,9 +50,11 @@ module Check
         csv_columns.map do |col|
           next if row[col].nil?
 
-          validate(row[col].to_s,
-                   file: file,
-                   locator: "'#{col}' in row #{i + 1}")
+          validate(
+            row[col].to_s,
+            file: file,
+            locator: "'#{col}' in row #{i + 1}"
+          )
         end
       end.flatten.compact.select { |r| r.is_a? InvalidDate }
     # most likely an encoding error
@@ -71,16 +73,7 @@ module Check
       mod = Mods::Record.new.from_file(file)
 
       mods_fields.map do |field|
-        dates = begin
-                  mod.origin_info.send(field).select do |d|
-                    d.encoding == "w3cdtf" ||
-                      d.encoding == "iso8601"
-                  end.map(&:text).reject(&:empty?)
-                rescue NoMethodError
-                  []
-                end
-
-        next if dates.empty?
+        dates = find_encoded_dates(mod, field, %w[w3cdtf iso8601])
 
         dates.map do |date|
           validate(date,
@@ -88,6 +81,17 @@ module Check
                    locator: "Value of '#{field}'")
         end
       end.flatten.compact.select { |r| r.is_a? InvalidDate }
+    end
+
+    # @param [Mods::Record] document
+    # @param [string] field
+    # @param [Array] encodings
+    def self.find_encoded_dates(document, field, encodings = [])
+      document.origin_info.send(field).select do |d|
+        encodings.include? d.encoding
+      end.map(&:text).reject(&:empty?)
+    rescue NoMethodError
+      []
     end
 
     def self.validate(datestring, formatting)
