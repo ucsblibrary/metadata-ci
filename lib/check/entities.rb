@@ -13,6 +13,21 @@ module Check
       "2" => "&#x%<str>s;",
     }.freeze
 
+    def self.whitelist
+      @whitelist ||= YAML.safe_load(
+        File.read(
+          File.expand_path("../../../config/entity_whitelist.yml", __FILE__)
+        )
+      )
+    end
+
+    # @param [String] file
+    # @return [Array<String>]
+    def self.whitelist_for(file)
+      ext = File.extname(file).delete(".")
+      whitelist[ext] || []
+    end
+
     # @param [String, Array<String>] files
     # @return [Array<EncodedEntity>]
     def self.batch(*files)
@@ -31,7 +46,9 @@ module Check
         matches = line.scan(decoder.send(:entity_regexp))
         next if matches.nil?
 
-        matches.map do |match|
+        matches.reject do |m|
+          whitelist_for(file).any? { |w| m.include? w }
+        end.map do |match|
           EncodedEntity.new(
             file: file,
             problem: "HTML-encoded character "\
