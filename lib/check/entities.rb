@@ -2,6 +2,7 @@
 
 require "htmlentities"
 require File.expand_path("../../errors/encoded_entity.rb", __FILE__)
+require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
 
 module Check
   # Checks for encoded HTML entities
@@ -37,6 +38,9 @@ module Check
           )
         end
       end
+    # most likely an encoding error
+    rescue ArgumentError => e
+      [WrongEncoding.new("#{file}: #{e.message}")]
     end
 
     def self.format_match(match)
