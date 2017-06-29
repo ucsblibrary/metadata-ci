@@ -55,7 +55,9 @@ module Check
           validate(
             datestring: row[col].to_s,
             file: file,
-            formatting: { locator: "#{col} in row #{i + 1}" }
+            # add 2 to i since the CSV::Table doesn't have the headers
+            # as a separate row, and the rows start from 0
+            formatting: { locator: "#{col} on line #{i + 2}" }
           )
         end
       end.flatten.compact.select { |r| r.is_a? InvalidDate }
