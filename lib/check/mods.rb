@@ -16,13 +16,21 @@ module Check
       xsd = Nokogiri::XML::Schema(SCHEMA)
 
       files.flatten.map do |file|
-        next unless File.extname(file) == ".xml"
-        xml = Nokogiri::XML(File.read(file))
-
-        xsd.validate(xml).map do |error|
-          InvalidMODS.new(file: file, problem: error.to_s)
-        end
+        validate(file, xsd)
       end.flatten.compact.select { |r| r.is_a? InvalidMODS }
+    end
+
+    # @param [String] file
+    # @param [Nokogiri::XML::Schema] xsd
+    # @return [Array<MetadataError>]
+    def self.validate(file, xsd)
+      return unless File.extname(file) == ".xml"
+
+      xml = Nokogiri::XML(File.read(file))
+
+      xsd.validate(xml).map do |error|
+        InvalidMODS.new(file: file, problem: error.to_s)
+      end
     # most likely an encoding error
     rescue ArgumentError => e
       [WrongEncoding.new(file: file, problem: e.message)]
