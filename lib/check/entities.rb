@@ -25,7 +25,7 @@ module Check
 
     # @param [String] file
     # @param [HTMLEntities::Decoder] decoder
-    # @return [Array]
+    # @return [Array<EncodedEntity>]
     def self.scan_file(file, decoder)
       File.read(file).split("\n").map.with_index do |line, i|
         matches = line.scan(decoder.send(:entity_regexp))
@@ -44,6 +44,8 @@ module Check
       [WrongEncoding.new(file: file, problem: e.message)]
     end
 
+    # @param [Array] match
+    # @return [String]
     def self.format_match(match)
       # There are three types of HTML entities, so the match is
       # an Array with three elements, two of them nil; @see

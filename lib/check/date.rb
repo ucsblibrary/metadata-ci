@@ -16,6 +16,8 @@ module Check
       "%<locator>s: '%<value>s' is not W3C-valid "\
       "(https://www.w3.org/TR/1998/NOTE-datetime-19980827)."
 
+    # @param [Array<String>] files
+    # @return [Array<MetadataError>]
     def self.batch(files)
       files.map do |file|
         case File.extname(file)
@@ -86,6 +88,7 @@ module Check
     # @param [Mods::Record] document
     # @param [string] field
     # @param [Array] encodings
+    # @return [Array<String>]
     def self.find_encoded_dates(document, field, encodings = [])
       document.origin_info.send(field).select do |d|
         encodings.include? d.encoding
@@ -94,6 +97,7 @@ module Check
       []
     end
 
+    # @return [DateTime]
     def self.validate(datestring:, file:, formatting:)
       W3cDatetime.parse(datestring)
     rescue ArgumentError, InvalidDate

@@ -29,6 +29,7 @@ module Check
       raise WrongEncoding.new(file: file, problem: e.message)
     end
 
+    # @return [Nil]
     def self.check_for_declaration(filename, contents)
       return unless File.extname(filename) == ".xml" &&
                     !contents.downcase.include?('encoding="utf-8"')
