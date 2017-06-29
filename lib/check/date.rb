@@ -12,6 +12,11 @@ module Check
   # Provides methods for checking the W3C-validity of dates in CSV and
   # XML MODS metadata files
   module Date
+    INVALID_DATE_MSG =
+      "%<file>s:\n  %<locator>s: "\
+      "'\033[1;39m%<value>s\033[0m' is not W3C-valid "\
+      "(https://www.w3.org/TR/1998/NOTE-datetime-19980827)."
+
     def self.batch(files)
       files.map do |file|
         case File.extname(file)
@@ -45,16 +50,9 @@ module Check
         csv_columns.map do |col|
           next if row[col].nil?
 
-          begin
-            W3cDatetime.parse(row[col].to_s)
-          rescue ArgumentError, InvalidDate
-            InvalidDate.new(
-              "#{file}:\n"\
-              "  '#{col}' in row #{i}: "\
-              "'\033[1;39m#{row[col]}\033[0m' is not W3C-valid "\
-              "(https://www.w3.org/TR/1998/NOTE-datetime-19980827)."
-            )
-          end
+          validate(row[col].to_s,
+                   file: file,
+                   locator: "'#{col}' in row #{i + 1}")
         end
       end.flatten.compact.select { |r| r.is_a? InvalidDate }
     # most likely an encoding error
@@ -85,18 +83,20 @@ module Check
         next if dates.empty?
 
         dates.map do |date|
-          begin
-            W3cDatetime.parse(date)
-          rescue ArgumentError, InvalidDate
-            InvalidDate.new(
-              "#{file}:\n"\
-              "  Value of '\033[1;39m#{date}\033[0m' for '#{field}' "\
-              "is not W3C-valid "\
-              "(https://www.w3.org/TR/1998/NOTE-datetime-19980827)."
-            )
-          end
+          validate(date,
+                   file: file,
+                   locator: "Value of '#{field}'")
         end
       end.flatten.compact.select { |r| r.is_a? InvalidDate }
+    end
+
+    def self.validate(datestring, formatting)
+      W3cDatetime.parse(datestring)
+    rescue ArgumentError, InvalidDate
+      InvalidDate.new(
+        format(INVALID_DATE_MSG,
+               formatting.merge(value: datestring))
+      )
     end
   end
 end
