@@ -17,7 +17,7 @@ class EncodingTest < MiniTest::Test
     )
   end
 
-  def test_weird_utf8
+  def test_weird_utf8_csv
     errors = Check::Encoding.batch(
       [File.expand_path("../fixtures/csv/mcpeak-utf8problems.csv", __FILE__),
        File.expand_path("../fixtures/csv/uarch112-part3a-excel-csv.csv",
@@ -30,6 +30,20 @@ class EncodingTest < MiniTest::Test
 
     refute_empty errors
     assert_equal 4, errors.count
+  end
+
+  def test_weird_utf8_mods
+    errors = Check::Encoding.batch(
+      [File.expand_path("../fixtures/mods/cusbspcmss36-110001-ISO-8859-1.xml",
+                        __FILE__),
+       File.expand_path("../fixtures/mods/cusbspcmss36-110001_utf16.xml",
+                        __FILE__),
+       File.expand_path("../fixtures/mods/cusbspcmss36-110001_windows-1252.xml",
+                        __FILE__),]
+    )
+
+    refute_empty errors
+    assert_equal 3, errors.count
   end
 
   def test_latin_encoding
