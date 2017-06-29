@@ -25,11 +25,8 @@ module Check
           mods(file)
         when ".csv"
           csv(file)
-        else
-          MetadataError.new(file: file,
-                            problem: "Unsupported file type")
         end
-      end.flatten
+      end.flatten.compact
     end
 
     def self.date_fields
