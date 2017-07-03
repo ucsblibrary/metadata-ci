@@ -1,0 +1,59 @@
+#!/bin/bash
+
+rm -rf alexandria
+if [[ "$ADRL" == "master" ]]; then
+  git clone --depth=1 https://github.com/ucsblibrary/alexandria.git
+else
+  git clone https://github.com/ucsblibrary/alexandria.git
+fi
+
+revision=$(git rev-parse HEAD | tr -d '\n')
+changes=$(git --no-pager diff-tree -r --name-only --diff-filter=AM origin/${ghprbTargetBranch} $revision)
+
+pushd alexandria
+
+if [[ "$ADRL" == "stable" ]]; then
+  # check out the latest tagged release
+  git checkout -f "$(git tag -l | sort -n | tail -1)"
+fi
+
+# one of our Jenkins workers is broken so we have to hold its hand
+# through every little thing
+export PATH="~/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+if ! rbenv versions | grep "2.3.1" >/dev/null 2>&1; then
+  rbenv install 2.3.1
+fi
+rbenv local 2.3.1
+
+gem install --no-document bundler rake
+bundle install
+
+cp config/secrets.yml.template config/secrets.yml
+sed -i 's|ezid_pass:|ezid_pass: REPLACE_ME|' config/secrets.yml
+
+export CI=1
+export RAILS_ENV=test
+
+bin/wrap
+sleep 40
+
+bin/rake db:migrate
+bin/rails s &
+sleep 10
+
+full_paths=$(for file in $changes; do echo "../$file"; done)
+
+for file in $full_paths; do
+  if [[ "$file" =~ .*\.csv$ ]]; then
+    bin/ingest -f csv -m "$file"
+  elif [[ "$file" =~ .*\.xml$ ]]; then
+    bin/ingest -f mods -m "$(dirname file)/../collection"
+    bin/ingest -f mods -m "$file"
+  else
+    echo "Don't know how to ingest $file, skipping" >&2
+  fi
+done
+
+trap "{ bin/unwrap }" SIGSTOP SIGTERM SIGINT

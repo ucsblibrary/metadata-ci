@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# one of our Jenkins workers is broken so we have to hold its hand
+# through every little thing
+export PATH="~/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+rm -rf metadata-ci
+git clone --depth=1 https://github.com/ucsblibrary/metadata-ci.git
+
+pushd metadata-ci
+bundle install
+
+bundle exec bin/check ../ingest-ready
