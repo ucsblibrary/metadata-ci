@@ -4,6 +4,9 @@ source "https://rubygems.org"
 
 gem "byebug"
 gem "htmlentities"
+gem "metadata-fields",
+    git: "https://github.com/ucsblibrary/metadata-fields.git",
+    ref: "6b137a3c1416444e6f61b647e8f701831303b4d7"
 gem "method_source"
 gem "minitest"
 gem "mods"
