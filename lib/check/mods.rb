@@ -27,19 +27,23 @@ module Check
       )
     end
 
-    # @param [String] file
-    # @return [Array<MetadataError>]
-    def self.validate(file)
-      xml = Nokogiri::XML(File.read(file))
-      schema = xml
-        .xpath("mods:mods")
+    # @param [Nokogiri::XML] xml
+    # @return [String]
+    def self.schema_url(xml)
+      xml.xpath("mods:mods")
         .first
         .attributes["schemaLocation"]
         .text
         .split(" ")
         .last
+    end
 
-      schema_from_url(schema).validate(xml).map do |error|
+    # @param [String] file
+    # @return [Array<MetadataError>]
+    def self.validate(file)
+      xml = Nokogiri::XML(File.read(file))
+
+      schema_from_url(schema_url(xml)).validate(xml).map do |error|
         InvalidMODS.new(file: file, problem: error.to_s)
       end
     # most likely an encoding error
