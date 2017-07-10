@@ -67,13 +67,18 @@ module Check
 
         field.map do |key, val|
           next key unless val["subfields"]
-
-          val["subfields"].map do |s|
-            next s unless s.respond_to? :keys
-            s.keys.first
-          end
+          subfield_strings(val["subfields"])
         end
       end.flatten.compact
+    end
+
+    # @param [Array] fields
+    # @return [Array<String>]
+    def self.subfield_strings(fields)
+      fields.map do |s|
+        next s unless s.respond_to? :keys
+        s.keys.first
+      end
     end
 
     # @param [String] file
@@ -82,13 +87,12 @@ module Check
     def self.check_required_subfields(file, headers)
       all_subfields.map do |field|
         subs = field.values.first["subfields"]
+        next unless subfield_strings(subs).any? do |f|
+          headers.map(&:to_s).include? f.to_s
+        end
+
         # If any of the subfields are used, then all their required
         # siblings need to be used
-        next unless subs.map do |s|
-          next s unless s.respond_to? :keys
-          s.keys.first
-        end.any? { |f| headers.map(&:to_s).include? f.to_s }
-
         required_siblings = subs.map do |sub|
           next unless sub.respond_to? :values
           next unless sub.values.any? { |v| v["required"] }
@@ -122,33 +126,22 @@ module Check
       #     },
       #   }, }
       ordered_fields.map do |field_group|
-        subfields = field_group.values.first["subfields"]
-
-        subfield_keys = subfields.map do |s|
-          next s unless s.respond_to? :keys
-          s.keys.first
-        end
+        subfield_keys = subfield_strings(field_group.values.first["subfields"])
 
         next unless subfield_keys.any? do |k|
           headers.map(&:to_s).include? k.to_s
         end
 
-        subfields.map.with_index do |sub, i|
+        subfield_keys.map.with_index do |sub, i|
           next unless headers.map(&:to_s).include? subfield_keys[i]
           next if subfield_keys[i + 1].nil?
 
-          pointer = if sub.respond_to? :keys
-                      sub.keys.first
-                    else
-                      sub
-                    end
-
-          header_i = headers.map(&:to_s).index(pointer)
+          header_i = headers.map(&:to_s).index(sub)
           next if subfield_keys[i + 1] == headers.map(&:to_s)[header_i + 1]
 
           InvalidHeader.new(
             file: file,
-            problem: "'#{sub.keys.first}' "\
+            problem: "'#{sub}' "\
                      "should be followed by '#{subfield_keys[i + 1]}'."
           )
         end
