@@ -10,7 +10,6 @@ module Check
     # @param [Encoding]
     def self.is?(file, encoding = ::Encoding::UTF_8)
       raw = File.read(file)
-
       # calling #split will trigger invalid byte errors:
       # https://robots.thoughtbot.com/fight-back-utf-8-invalid-byte-sequences
       raw.split(" ")
@@ -18,12 +17,9 @@ module Check
       check_for_declaration(file, raw)
       return true if raw.encoding == encoding
 
-      raise(
-        WrongEncoding.new(
-          file: file,
-          problem: "Expected #{encoding.name}, got #{raw.encoding.name}"
-        )
-      )
+      raise WrongEncoding.new(file: file,
+                              problem: "Expected #{encoding.name}, "\
+                                       "got #{raw.encoding.name}")
     rescue ArgumentError => e
       raise WrongEncoding.new(file: file, problem: e.message)
     end
