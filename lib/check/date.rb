@@ -47,21 +47,29 @@ module Check
     # @return [Array<InvalidDate>]
     def self.csv(file)
       CSV.table(file, encoding: "bom|UTF-8").map.with_index do |row, i|
-        csv_columns.map do |col|
-          next if row[col].nil?
-
-          validate(
-            datestring: row[col].to_s,
-            file: file,
-            # add 2 to i since the CSV::Table doesn't have the headers
-            # as a separate row, and the rows start from 0
-            formatting: { locator: "#{col} on line #{i + 2}" }
-          )
-        end
+        validate_row_at(file, row, i)
       end.flatten.compact.select { |r| r.is_a? InvalidDate }
     # most likely an encoding error
     rescue ArgumentError => e
       [WrongEncoding.new(file: file, problem: e.message)]
+    end
+
+    # @param [String] file The path to the file
+    # @param [CSV::Row] row
+    # @param [Int] i
+    # @return [Array<Nil, InvalidDate>
+    def self.validate_row_at(file, row, i)
+      csv_columns.map do |col|
+        next if row[col].nil?
+
+        validate(
+          datestring: row[col].to_s,
+          file: file,
+          # add 2 to i since the CSV::Table doesn't have the headers
+          # as a separate row, and the rows start from 0
+          formatting: { locator: "#{col} on line #{i + 2}" }
+        )
+      end
     end
 
     # @return [Array<String>]
