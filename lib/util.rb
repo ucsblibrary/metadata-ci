@@ -9,16 +9,13 @@ module Util
   # @return [Array<String>
   def self.find_paths(params)
     params.map do |arg|
-      if File.file?(arg)
-        arg
-      else
-        next unless Dir.exist?(arg)
-        datas = []
-        Find.find(arg) do |path|
-          next if File.directory?(path)
-          datas << path
-        end
-        datas
+      next arg if File.file?(arg)
+
+      next unless Dir.exist?(arg)
+
+      Find.find(arg).map do |path|
+        next if File.directory?(path)
+        path
       end
     end.flatten.compact
   end
