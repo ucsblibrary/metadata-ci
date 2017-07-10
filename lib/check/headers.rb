@@ -137,7 +137,13 @@ module Check
           next unless headers.map(&:to_s).include? subfield_keys[i]
           next if subfield_keys[i + 1].nil?
 
-          header_i = headers.map(&:to_s).index(sub.keys.first)
+          pointer = if sub.respond_to? :keys
+                      sub.keys.first
+                    else
+                      sub
+                    end
+
+          header_i = headers.map(&:to_s).index(pointer)
           next if subfield_keys[i + 1] == headers.map(&:to_s)[header_i + 1]
 
           InvalidHeader.new(
