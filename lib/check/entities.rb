@@ -22,10 +22,16 @@ module Check
     end
 
     # @param [String] file
+    # @param [Array<String>] matches
     # @return [Array<String>]
-    def self.whitelist_for(file)
-      ext = File.extname(file).delete(".")
-      whitelist[ext] || []
+    def self.whitelisted_matches(file, matches)
+      matches.reject do |match|
+        ext = File.extname(file).delete(".")
+
+        (whitelist[ext] || []).any? do |w|
+          match.include? w
+        end
+      end
     end
 
     # @param [String, Array<String>] files
@@ -46,14 +52,11 @@ module Check
         matches = line.scan(decoder.send(:entity_regexp))
         next if matches.nil?
 
-        matches.reject do |m|
-          whitelist_for(file).any? { |w| m.include? w }
-        end.map do |match|
-          EncodedEntity.new(
-            file: file,
-            problem: "HTML-encoded character "\
-                     "'#{format_match(match)}' on line #{i + 1}"
-          )
+        whitelisted_matches(file, matches).map do |match|
+          EncodedEntity.new(file: file,
+                            problem: "HTML-encoded character "\
+                                     "'#{format_match(match)}' "\
+                                     "on line #{i + 1}")
         end
       end
     # most likely an encoding error
