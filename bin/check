@@ -17,7 +17,7 @@ errors = [
   Check::Encoding.batch(data),
   Check::Entities.batch(data),
   Check::Headers.batch(data),
-  Check::MODS.batch(data),
+  Check::Schema.batch(data),
 ].flatten.sort_by(&:file)
 
 if errors.empty?

@@ -6,7 +6,7 @@ require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
 
 module Check
   # Checks that MODS XML files follow the schema
-  module MODS
+  module Schema
     # @param [String, Array<String>] files
     # @return [Array<EncodedEntity>]
     def self.batch(*files)
