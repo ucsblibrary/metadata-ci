@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd"><mods:titleInfo usage="primary">
+			<mods:title>West Beach and yacht harbor</mods:title>
+		</mods:titleInfo><mods:typeOfResource>still image</mods:typeOfResource><mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300192703">Photographic postcards</mods:genre><mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300026816">Postcards</mods:genre><mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300046300">Photographs</mods:genre><mods:originInfo>
+			<mods:place>
+				<mods:placeTerm type="text">[Santa Barbara]</mods:placeTerm>
+			</mods:place>
+			<mods:publisher>Anderson Photo Service</mods:publisher>
+			<mods:dateIssued>[circa 1900s-1950s]</mods:dateIssued>
+			<mods:dateIssued encoding="w3cdtf" point="start" qualifier="approximate" keyDate="yes">1900</mods:dateIssued>
+			<mods:dateIssued encoding="w3cdtf" point="end" qualifier="approximate">1959</mods:dateIssued>
+		</mods:originInfo><mods:identifier type="local">cusbspcmss36-110001</mods:identifier><mods:language>
+			<mods:languageTerm authority="iso639-2b" type="code" authorityURI="http://id.loc.gov/vocabulary/iso639-2" valueURI="http://id.loc.gov/vocabulary/iso639-2/eng">eng</mods:languageTerm>
+		</mods:language><mods:physicalDescription>
+			<mods:digitalOrigin>reformatted digital</mods:digitalOrigin>
+			<mods:extent>1 photograph ; 9 x 14 cm (postcard format)</mods:extent>
+		</mods:physicalDescription><mods:note>Title from item.</mods:note><mods:note>Postcard caption: West Beach and yacht harbor, Santa Barbara.</mods:note><mods:note type="preferred citation">[Identification of Item], Santa Barbara picture
+			postcards collection. SBHC Mss 36. Department of Special Research Collections, UC Santa
+			Barbara Library, University of California, Santa Barbara.</mods:note><mods:subject authority="lcsh" authorityURI="http://id.loc.gov/authorities/subjects">
+			<mods:geographic valueURI="http://id.loc.gov/authorities/names/n79081574">Santa Barbara
+				(Calif.)</mods:geographic>
+		</mods:subject><mods:subject>
+			<mods:cartographics>
+				<mods:coordinates>34.4057826, -119.6912905</mods:coordinates>
+			</mods:cartographics>
+		</mods:subject><mods:relatedItem type="host">
+			<mods:titleInfo>
+				<mods:title>Santa Barbara picture postcards collection</mods:title>
+			</mods:titleInfo>
+			<mods:identifier type="local">SBHC Mss 36</mods:identifier>
+		</mods:relatedItem><mods:location>
+			<mods:physicalLocation valueURI="http://id.loc.gov/vocabulary/organizations/cusb">University of California, Santa Barbara</mods:physicalLocation>
+			<mods:holdingSimple>
+				<mods:copyInformation>
+					<mods:subLocation>Department of Special Research Collections</mods:subLocation>
+				</mods:copyInformation>
+			</mods:holdingSimple>
+		</mods:location><mods:accessCondition type="use and reproduction">Transmission or reproduction of materials protected by copyright beyond that allowed by fair use requires the written permission of the copyright owners. In addition, the reproduction of some materials may be restricted by terms of gift or purchase agreements, donor restrictions, privacy and publicity rights, licensing and trademarks (contact the department of Special Research Collections at the UC Santa Barbara Library for more information). Works not in the public domain cannot be commercially exploited without permission of the copyright owner. Responsibility for any use rests exclusively with the user.</mods:accessCondition><mods:extension> <fileName order="1" label="Front">/repository/images/sbhcmss078/cusbspcmss36-110001-1-m.tif</fileName> <fileName order="2" label="Back">/repository/images/sbhcmss078/cusbspcmss36-110001-2-m.tif</fileName> <copyrightStatus valueURI="http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk">Unknown</copyrightStatus> <copyrightStatement valueURI="http://rightsstatements.org/vocab/CNE/1.0/">Unknown</copyrightStatement> </mods:extension><mods:recordInfo>
+			<mods:descriptionStandard>local</mods:descriptionStandard>
+			<mods:recordContentSource authority="marcorg" authorityURI="http://id.loc.gov/vocabulary/organizations" valueURI="http://id.loc.gov/vocabulary/organizations/cusb">CU-SB</mods:recordContentSource>
+			<mods:languageOfCataloging usage="primary">
+				<mods:languageTerm type="code" authority="iso639-2b" authorityURI="http://id.loc.gov/vocabulary/iso639-2" valueURI="http://id.loc.gov/vocabulary/iso639-2/eng">eng</mods:languageTerm>
+			</mods:languageOfCataloging>
+			<mods:recordOrigin>Converted from CSV to MODS 3.4 using local
+				mapping.</mods:recordOrigin>
+		</mods:recordInfo></mods:mods>

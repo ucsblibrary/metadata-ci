@@ -27,4 +27,12 @@ module Util
 
     "\033[1;39m#{str}\033[0m"
   end
+
+  # @param [String] str
+  # @return [String]
+  def self.warn(str)
+    return str unless $stdout.tty?
+
+    "\033[4;33m#{str}\033[0m"
+  end
 end
