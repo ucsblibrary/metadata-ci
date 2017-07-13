@@ -6,7 +6,7 @@ gem "byebug"
 gem "htmlentities"
 gem "metadata-fields",
     git: "https://github.com/ucsblibrary/metadata-fields.git",
-    ref: "4f30513b3e94010f9331409421558be96423a84c"
+    ref: "ca7129307acb727d75d232836ba3ced974b20362"
 gem "method_source"
 gem "minitest"
 gem "mods"

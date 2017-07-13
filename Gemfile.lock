@@ -8,8 +8,8 @@ GIT
 
 GIT
   remote: https://github.com/ucsblibrary/metadata-fields.git
-  revision: 4f30513b3e94010f9331409421558be96423a84c
-  ref: 4f30513b3e94010f9331409421558be96423a84c
+  revision: ca7129307acb727d75d232836ba3ced974b20362
+  ref: ca7129307acb727d75d232836ba3ced974b20362
   specs:
     metadata-fields (0.0.1)
       rdf-vocab (>= 2.0)
@@ -97,4 +97,4 @@ DEPENDENCIES
   w3c_datetime!
 
 BUNDLED WITH
-   1.14.6
+   1.15.1
