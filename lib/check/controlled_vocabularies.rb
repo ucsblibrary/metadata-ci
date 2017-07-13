@@ -26,21 +26,25 @@ module Check
     # @return [Array<MetadataError>]
     def self.batch(files)
       files.map do |file|
-        validate_all(file)
+        validate_file(file)
       end.flatten.compact.select { |e| e.is_a? MetadataError }
     end
 
-    def self.validate_all(file)
-      objects = case File.extname(file)
-                when ".xml"
-                  [Mods::Record.new.from_file(file)]
-                when ".csv"
-                  CSV.table(file).map { |r| r }
-                else
-                  []
-                end
+    # @param [String] file
+    def self.objects_from_file(file)
+      case File.extname(file)
+      when ".xml"
+        [Mods::Record.new.from_file(file)]
+      when ".csv"
+        CSV.table(file).map { |r| r }
+      else
+        []
+      end
+    end
 
-      objects.map do |obj|
+    # @param [String] file
+    def self.validate_file(file)
+      objects_from_file(file).map do |obj|
         [
           validate_model(file, obj),
           validate_location(file, obj),
