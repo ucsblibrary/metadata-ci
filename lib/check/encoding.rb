@@ -35,7 +35,7 @@ module Check
       )
     end
 
-    # @param [Array<String>]
+    # @param [Array<String>] files
     # @return [Array<WrongEncoding>]
     def self.batch(files)
       files.map do |f|
