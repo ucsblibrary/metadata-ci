@@ -46,7 +46,7 @@
     <mods:physicalLocation valueURI="http://id.loc.gov/vocabulary/organizations/cusb">University of California, Santa Barbara</mods:physicalLocation>
     <mods:holdingSimple>
       <mods:copyInformation>
-        <mods:subLocation>Department of Special Collections</mods:subLocation>
+        <mods:subLocation>Department of Special Research Collections</mods:subLocation>
       </mods:copyInformation>
     </mods:holdingSimple>
   </mods:location>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
   <mods:titleInfo usage="primary">
     <mods:title>Barn in Castroville, California</mods:title>
@@ -9,7 +9,7 @@
       <mods:roleTerm type="text" authority="marcrelator" authorityURI="http://id.loc.gov/vocabulary/relators" valueURI="http://id.loc.gov/vocabulary/relators/pht">Photographer</mods:roleTerm>
     </mods:role>
   </mods:name>
-  <mods:typeOfResource>still image</mods:typeOfResource>
+  <mods:typeOfResource>wiggly image</mods:typeOfResource>
   <mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300046300">Photographs</mods:genre>
   <mods:originInfo>
     <mods:dateCreated encoding="w3cdtf" keyDate="yes">1984-11-15</mods:dateCreated>
@@ -46,7 +46,7 @@
     <mods:physicalLocation valueURI="http://id.loc.gov/vocabulary/organizations/cusb">University of California, Santa Barbara</mods:physicalLocation>
     <mods:holdingSimple>
       <mods:copyInformation>
-        <mods:subLocation>Department of Special Research Collections</mods:subLocation>
+        <mods:subLocation>Somewhere outside Memphis</mods:subLocation>
       </mods:copyInformation>
     </mods:holdingSimple>
   </mods:location>
