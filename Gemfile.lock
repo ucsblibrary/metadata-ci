@@ -8,8 +8,8 @@ GIT
 
 GIT
   remote: https://github.com/ucsblibrary/metadata-fields.git
-  revision: ca7129307acb727d75d232836ba3ced974b20362
-  ref: ca7129307acb727d75d232836ba3ced974b20362
+  revision: e7e7e04fe3fbe04f9580a0f7008a64b4ff3df1b6
+  ref: e7e7e04fe3fbe04f9580a0f7008a64b4ff3df1b6
   specs:
     metadata-fields (0.0.1)
       rdf-vocab (>= 2.0)
@@ -29,12 +29,12 @@ GEM
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
     htmlentities (4.3.4)
-    i18n (0.8.4)
+    i18n (0.8.6)
     iso-639 (0.2.8)
     link_header (0.0.8)
     method_source (0.8.2)
     mini_portile2 (2.2.0)
-    minitest (5.10.2)
+    minitest (5.10.3)
     mods (2.1.0)
       iso-639
       nokogiri
@@ -45,7 +45,7 @@ GEM
       activesupport (>= 3.2.18)
       i18n
       nokogiri
-    parallel (1.11.2)
+    parallel (1.12.0)
     parser (2.4.0.0)
       ast (~> 2.2)
     powerpack (0.1.1)
@@ -59,7 +59,7 @@ GEM
     rainbow (2.2.2)
       rake
     rake (12.0.0)
-    rdf (2.2.6)
+    rdf (2.2.7)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
     rdf-vocab (2.2.3)
