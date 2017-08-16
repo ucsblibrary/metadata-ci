@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "charlock_holmes"
 require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
 
 module Check
@@ -8,43 +9,39 @@ module Check
   module Encoding
     # @param [String] file Path to the file
     # @param [Encoding]
-    def self.is?(file, encoding = ::Encoding::UTF_8)
+    def self.validate_encoding(file, expected_encoding)
       raw = File.read(file)
-      # calling #split will trigger invalid byte errors:
-      # https://robots.thoughtbot.com/fight-back-utf-8-invalid-byte-sequences
-      raw.split(" ")
 
-      check_for_declaration(file, raw)
-      return true if raw.encoding == encoding
+      actual_encoding = CharlockHolmes::EncodingDetector.detect(raw)[:encoding]
+      return if actual_encoding == expected_encoding.upcase
 
-      raise WrongEncoding.new(file: file,
-                              problem: "Expected #{encoding.name}, "\
-                                       "got #{raw.encoding.name}")
-    rescue ArgumentError => e
-      raise WrongEncoding.new(file: file, problem: e.message)
+      WrongEncoding.new(
+        file: file,
+        problem: "Expected #{expected_encoding}, got #{actual_encoding}."
+      )
     end
 
     # @return [Nil]
-    def self.check_for_declaration(filename, contents)
-      return unless File.extname(filename) == ".xml" &&
-                    !contents.downcase.include?('encoding="utf-8"')
+    def self.validate_declaration(file, expected_declaration)
+      return unless File.extname(file) == ".xml"
+      return if File.read(file)
+                  .downcase
+                  .include?("encoding=\"#{expected_declaration.downcase}\"")
 
-      raise(
-        WrongEncoding.new(file: filename,
-                          problem: "Missing 'encoding=\"UTF-8\"' declaration.")
-      )
+      WrongEncoding.new(file: file,
+                        problem: "Missing 'encoding=\"UTF-8\"' declaration.")
+    rescue ArgumentError
     end
 
     # @param [Array<String>] files
     # @return [Array<WrongEncoding>]
     def self.batch(files)
       files.map do |f|
-        begin
-          is?(f)
-        rescue WrongEncoding => e
-          e
-        end
-      end.select { |result| result.is_a? WrongEncoding }
+        [
+          validate_encoding(f, "UTF-8"),
+          validate_declaration(f, "UTF-8"),
+        ]
+      end.flatten.select { |result| result.is_a? WrongEncoding }
     end
   end
 end
