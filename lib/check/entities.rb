@@ -56,7 +56,7 @@ module Check
           EncodedEntity.new(file: file,
                             problem: "HTML-encoded character "\
                                      "'#{format_match(match)}' "\
-                                     "on line #{i + 1}")
+                                     "on line #{i + 1}.")
         end
       end
     # most likely an encoding error
