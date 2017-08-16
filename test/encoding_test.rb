@@ -28,8 +28,8 @@ class EncodingTest < MiniTest::Test
                         __FILE__),]
     )
 
-    refute_empty errors
     assert_equal 4, errors.count
+    assert_includes errors.map(&:problem), "Expected UTF-8, got ISO-8859-1."
   end
 
   def test_weird_utf8_mods
@@ -42,29 +42,34 @@ class EncodingTest < MiniTest::Test
                         __FILE__),]
     )
 
-    refute_empty errors
-    assert_equal 3, errors.count
+    assert_equal 5, errors.count
+    assert_includes errors.map(&:problem), "Expected UTF-8, got ISO-8859-1."
+    assert_includes errors.map(&:problem), "Expected UTF-8, got UTF-16LE."
+    assert_includes errors.map(&:problem),
+                    "Missing 'encoding=\"UTF-8\"' declaration."
   end
 
   def test_latin_encoding
-    assert_raises WrongEncoding do
-      Check::Encoding.is?(
-        File.expand_path(
-          "../fixtures/mods/cusbmss228-p00001-latin1.xml",
-          __FILE__
-        )
-      )
-    end
+    error = Check::Encoding.validate_encoding(
+      File.expand_path("../fixtures/mods/cusbmss228-p00001-latin1.xml",
+                       __FILE__),
+      "UTF-8"
+    )
+
+    assert_equal WrongEncoding, error.class
+    assert_equal "Expected UTF-8, got ISO-8859-1.", error.problem
   end
 
   def test_missing_declaration
-    assert_raises WrongEncoding do
-      Check::Encoding.is?(
-        File.expand_path(
-          "../fixtures/mods/cusbmss228-p00001-missing-declaration.xml",
-          __FILE__
-        )
-      )
-    end
+    error = Check::Encoding.validate_declaration(
+      File.expand_path(
+        "../fixtures/mods/cusbmss228-p00001-missing-declaration.xml",
+        __FILE__
+      ),
+      "UTF-8"
+    )
+
+    assert_equal WrongEncoding, error.class
+    assert_equal "Missing 'encoding=\"UTF-8\"' declaration.", error.problem
   end
 end

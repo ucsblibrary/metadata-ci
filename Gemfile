@@ -3,10 +3,11 @@
 source "https://rubygems.org"
 
 gem "byebug"
+gem "charlock_holmes"
 gem "htmlentities"
 gem "metadata-fields",
     git: "https://github.com/ucsblibrary/metadata-fields.git",
-    ref: "e7e7e04fe3fbe04f9580a0f7008a64b4ff3df1b6"
+    ref: "e4d41ff8ef89f41bbb6c8dea2d44c1f68d5307d2"
 gem "method_source"
 gem "minitest"
 gem "mods"
