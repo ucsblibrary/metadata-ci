@@ -9,7 +9,7 @@ GIT
 PATH
   remote: .
   specs:
-    metadata-ci (0.0.1)
+    metadata_ci (0.0.1)
       htmlentities
       mods
       nokogiri
@@ -86,7 +86,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   htmlentities
-  metadata-ci!
+  metadata_ci!
   method_source
   minitest
   mods

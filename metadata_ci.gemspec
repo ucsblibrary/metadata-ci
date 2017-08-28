@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
                    "Valerie Maher",]
   spec.files    = `git ls-files -z`.split("\x0")
   spec.homepage = "https://github.com/ucsblibrary/metadata-ci"
-  spec.name     = "metadata-ci"
+  spec.name     = "metadata_ci"
   spec.summary  = "Methods for automated metadata validation and processing."
   spec.version  = "0.0.1"
 
