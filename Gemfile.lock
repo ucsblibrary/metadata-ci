@@ -6,24 +6,25 @@ GIT
   specs:
     w3c_datetime (0.0.4)
 
-GIT
-  remote: https://github.com/ucsblibrary/metadata-fields.git
-  revision: e7e7e04fe3fbe04f9580a0f7008a64b4ff3df1b6
-  ref: e7e7e04fe3fbe04f9580a0f7008a64b4ff3df1b6
+PATH
+  remote: .
   specs:
-    metadata-fields (0.0.1)
+    metadata-ci (0.0.1)
+      htmlentities
+      mods
+      nokogiri
       rdf-vocab (>= 2.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.1.2)
+    activesupport (5.1.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     ast (2.3.0)
-    byebug (9.0.6)
+    byebug (9.1.0)
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
     hamster (3.0.0)
@@ -53,16 +54,16 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-doc (0.10.0)
+    pry-doc (0.11.1)
       pry (~> 0.9)
       yard (~> 0.9)
     rainbow (2.2.2)
       rake
     rake (12.0.0)
-    rdf (2.2.7)
+    rdf (2.2.9)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
-    rdf-vocab (2.2.3)
+    rdf-vocab (2.2.6)
       rdf (~> 2.2)
     rubocop (0.49.1)
       parallel (~> 1.10)
@@ -85,7 +86,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   htmlentities
-  metadata-fields!
+  metadata-ci!
   method_source
   minitest
   mods
@@ -97,4 +98,4 @@ DEPENDENCIES
   w3c_datetime!
 
 BUNDLED WITH
-   1.15.1
+   1.15.4

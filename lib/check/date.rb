@@ -29,7 +29,7 @@ module Check
       end.flatten.compact
     end
 
-    # TODO: replace with Fields::CSV from metadata-fields
+    # TODO: replace with Fields::CSV
     def self.date_fields
       @date_fields ||= YAML.safe_load(
         File.read(

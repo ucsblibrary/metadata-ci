@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 require "csv"
-require "metadata-fields"
+
 require File.expand_path("../../errors/invalid_header.rb", __FILE__)
 require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
+require File.expand_path("../../fields.rb", __FILE__)
 
 module Check
   # Checks that CSV files have valid headers

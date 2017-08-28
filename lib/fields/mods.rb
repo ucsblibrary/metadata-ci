@@ -8,10 +8,10 @@ module Fields
       if collection?(mods)
         # This ensures that MODS Collections have their work_type be
         # Collection /and/ all the formats of the items they contain
-        RESOURCE_MAP['collection'].merge(
+        RESOURCE_MAP["collection"].merge(
           uri: [
-            RESOURCE_MAP['collection'][:uri],
-            *mods.typeOfResource.content.map { |t| RESOURCE_MAP[t][:uri] }
+            RESOURCE_MAP["collection"][:uri],
+            *mods.typeOfResource.content.map { |t| RESOURCE_MAP[t][:uri] },
           ].flatten
         )
       else
@@ -22,15 +22,15 @@ module Fields
 
     # @param [Mods::Record] mods
     def self.model(mods)
-      return 'Collection' if collection?(mods)
+      return "Collection" if collection?(mods)
 
       case mods.typeOfResource.content.first
       when *ETD_TYPES
-        'ETD'
+        "ETD"
       when *AUDIO_TYPES
-        'AudioRecording'
+        "AudioRecording"
       when *IMAGE_TYPES
-        'Image'
+        "Image"
       else
         raise ArgumentError,
               "Unsupported work type #{mods.typeOfResource.content.first}"
@@ -43,68 +43,68 @@ module Fields
     # @param [Mods::Record] mods
     def self.collection?(mods)
       type_keys = mods.typeOfResource.attributes.map(&:keys).flatten
-      return false unless type_keys.include?('collection')
+      return false unless type_keys.include?("collection")
 
       mods.typeOfResource.attributes.any? do |hash|
-        hash.fetch('collection').value == 'yes'
+        hash.fetch("collection").value == "yes"
       end
     end
 
     AUDIO_TYPES = [
-      'sound recording-musical',
-      'sound recording-nonmusical'
+      "sound recording-musical",
+      "sound recording-nonmusical",
     ].freeze
     ETD_TYPES = %w[text].freeze
-    IMAGE_TYPES = ['still image'].freeze
+    IMAGE_TYPES = ["still image"].freeze
 
     # Mapping of MODS typeOfResource to URIs
     # https://help.library.ucsb.edu/browse/DIGREPO-522
     # https://www.loc.gov/standards/mods/userguide/typeofresource.html
     RESOURCE_MAP = {
-      'text' => {
-        label: 'Text',
-        uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/txt')]
+      "text" => {
+        label: "Text",
+        uri: [RDF::URI.new("http://id.loc.gov/vocabulary/resourceTypes/txt")],
       },
-      'cartographic' => {
-        label: 'Cartographic',
-        uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/car')]
+      "cartographic" => {
+        label: "Cartographic",
+        uri: [RDF::URI.new("http://id.loc.gov/vocabulary/resourceTypes/car")],
       },
-      'notated music' => {
-        label: 'Notated music',
-        uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/not')]
+      "notated music" => {
+        label: "Notated music",
+        uri: [RDF::URI.new("http://id.loc.gov/vocabulary/resourceTypes/not")],
       },
-      'sound recording-nonmusical' => {
-        label: 'Audio non-musical',
-        uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/aun')]
+      "sound recording-nonmusical" => {
+        label: "Audio non-musical",
+        uri: [RDF::URI.new("http://id.loc.gov/vocabulary/resourceTypes/aun")],
       },
-      'sound recording-musical' => {
-        label: 'Audio musical',
-        uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/aum')]
+      "sound recording-musical" => {
+        label: "Audio musical",
+        uri: [RDF::URI.new("http://id.loc.gov/vocabulary/resourceTypes/aum")],
       },
-      'still image' => {
-        label: 'Still image',
-        uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/img')]
+      "still image" => {
+        label: "Still image",
+        uri: [RDF::URI.new("http://id.loc.gov/vocabulary/resourceTypes/img")],
       },
-      'moving image' => {
-        label: 'Moving image',
-        uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/mov')]
+      "moving image" => {
+        label: "Moving image",
+        uri: [RDF::URI.new("http://id.loc.gov/vocabulary/resourceTypes/mov")],
       },
-      'three dimensional object' => {
-        label: 'Artifact',
-        uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/art')]
+      "three dimensional object" => {
+        label: "Artifact",
+        uri: [RDF::URI.new("http://id.loc.gov/vocabulary/resourceTypes/art")],
       },
-      'software, multimedia' => {
-        label: 'Multimedia',
-        uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/mul')]
+      "software, multimedia" => {
+        label: "Multimedia",
+        uri: [RDF::URI.new("http://id.loc.gov/vocabulary/resourceTypes/mul")],
       },
-      'mixed material' => {
-        label: 'Mixed material',
-        uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/mix')]
+      "mixed material" => {
+        label: "Mixed material",
+        uri: [RDF::URI.new("http://id.loc.gov/vocabulary/resourceTypes/mix")],
       },
-      'collection' => {
-        label: 'Collection',
-        uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/col')]
-      }
+      "collection" => {
+        label: "Collection",
+        uri: [RDF::URI.new("http://id.loc.gov/vocabulary/resourceTypes/col")],
+      },
     }.freeze
   end
 end

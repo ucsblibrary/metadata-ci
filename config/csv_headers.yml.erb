@@ -1,0 +1,111 @@
+---
+- access_policy:
+    required: true
+- title
+- collection_title
+- collection_id
+- alternative
+- accession_number
+- identifier
+- id
+- matrix_number
+- issue_number
+- description
+- work_type
+- extent
+- publisher
+- place_of_publication
+- collection_accession_number
+- parent_accession_number
+- index_map_accession_number
+- series_name
+- folder_name
+- institution
+- sub_location
+- finding_aid
+- language
+- form_of_work
+- location
+- citation
+- description_standard
+- digital_origin
+- copyright_status
+- restrictions
+- rights_holder
+- license
+- latitude
+- longitude
+- north_bound_latitude
+- south_bound_latitude
+- east_bound_longitude
+- west_bound_longitude
+- scale
+- type:
+    required: true
+- files
+
+- issued:
+    ordered: true
+    subfields:
+      - issued_start:
+          required: true
+      - issued_finish:
+          required: true
+      - issued_label:
+          required: true
+      - issued_start_qualifier:
+          required: true
+      - issued_finish_qualifier:
+          required: true
+
+- created:
+    ordered: true
+    subfields:
+      - created_start:
+          required: true
+      - created_finish:
+          required: true
+      - created_label:
+          required: true
+      - created_start_qualifier:
+          required: true
+      - created_finish_qualifier:
+          required: true
+
+- other:
+    ordered: true
+    subfields:
+      - other_start:
+          required: true
+      - other_finish:
+          required: true
+      - other_label:
+          required: true
+      - other_start_qualifier:
+          required: true
+      - other_finish_qualifier:
+          required: true
+
+- note:
+    ordered: true
+    subfields:
+      - note_type:
+          required: true
+      - note:
+          required: true
+
+- lc_subject:
+    ordered: true
+    subfields:
+      - lc_subject_type
+      - lc_subject:
+          required: true
+
+<% Fields::MARCREL.keys.each do |field| %>
+- <%= field %>:
+    ordered: true
+    subfields:
+      - <%= field %>_type
+      - <%= field %>:
+          required: true
+<% end %>

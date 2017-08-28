@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rdf/vocab'
+require "rdf/vocab"
 
 module Fields
   MARCREL = {
