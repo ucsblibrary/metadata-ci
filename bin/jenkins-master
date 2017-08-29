@@ -11,4 +11,4 @@ git clone --depth=1 https://github.com/ucsblibrary/metadata-ci.git
 pushd metadata-ci
 bundle install
 
-bundle exec bin/check ../ingest-ready
+bundle exec bin/check -f ../ingest-ready

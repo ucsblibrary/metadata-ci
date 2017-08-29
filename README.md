@@ -4,15 +4,24 @@ A CLI/library for validating ADRL metadata.
 
 ## Adding a new checker
 
-To add a new checker, provide a method that accepts an array of paths
-as its only parameter and returns an array of `MetadataError`s; then
-add it to the array in `bin/check`.
+To add a new checker, create a new file in `lib/check` with a
+`Check::` submodule.  The submodule needs a `#batch` method that
+accepts an array of paths as its only parameter and returns an array
+of `MetadataError`s.
 
 ## CLI
 
 General usage:
 ```
-bin/check <files>
+$ bin/check -h
+Command line interface to metadata-ci validation tools
+
+Usage:
+  check [options] -f <files>
+  -f, --files=<s+>      Metadata files/directories to validate
+  -w, --with=<s+>       Only run the specified checks
+  -i, --without=<s+>    Skip the specified checks
+  -h, --help            Show this message
 ```
 
 ### MODS

@@ -15,4 +15,4 @@ pushd metadata-ci
 bundle install
 full_paths=$(for file in $changes; do echo "../$file"; done)
 
-bundle exec bin/check $full_paths
+bundle exec bin/check -f $full_paths
