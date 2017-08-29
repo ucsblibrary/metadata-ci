@@ -4,15 +4,13 @@ source "https://rubygems.org"
 
 gemspec
 gem "byebug"
-gem "htmlentities"
 gem "method_source"
 gem "minitest"
-gem "mods"
-gem "nokogiri"
 gem "pry"
 gem "pry-doc"
 gem "rake"
 gem "rubocop", "~> 0.49.0"
+gem "trollop"
 gem "w3c_datetime",
     git: "https://github.com/dunn/w3c_datetime.git",
     branch: "errors",

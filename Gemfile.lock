@@ -75,6 +75,7 @@ GEM
     ruby-progressbar (1.8.1)
     slop (3.6.0)
     thread_safe (0.3.6)
+    trollop (2.1.2)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     unicode-display_width (1.3.0)
@@ -85,16 +86,14 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  htmlentities
   metadata_ci!
   method_source
   minitest
-  mods
-  nokogiri
   pry
   pry-doc
   rake
   rubocop (~> 0.49.0)
+  trollop
   w3c_datetime!
 
 BUNDLED WITH
