@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
-require File.expand_path("../check/controlled_vocabularies.rb", __FILE__)
-require File.expand_path("../check/date.rb", __FILE__)
-require File.expand_path("../check/encoding.rb", __FILE__)
-require File.expand_path("../check/entities.rb", __FILE__)
-require File.expand_path("../check/headers.rb", __FILE__)
-require File.expand_path("../check/schema.rb", __FILE__)
+Dir.glob(File.expand_path("../check/*.rb", __FILE__)).each do |f|
+  require f
+end
 
 # Parent module for all checks
 module Check; end
