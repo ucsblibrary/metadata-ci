@@ -16,6 +16,14 @@ General usage:
 $ bin/check -h
 Command line interface to metadata-ci validation tools
 
+Available checks:
+  * ControlledVocabularies
+  * Date
+  * Encoding
+  * Entities
+  * Headers
+  * Schema
+
 Usage:
   check [options] -f <files>
   -f, --files=<s+>      Metadata files/directories to validate

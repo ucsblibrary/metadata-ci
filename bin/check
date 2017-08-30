@@ -12,6 +12,13 @@ require "trollop"
 require File.expand_path("../../lib/check.rb", __FILE__)
 require File.expand_path("../../lib/util.rb", __FILE__)
 
+ALL_CHECKS = Dir.glob(
+  File.expand_path("../../lib/check/*.rb", __FILE__)
+).map do |f|
+  next unless /\.rb$/ =~ f
+  File.basename(f).sub(/\.rb$/, "").split("_").map(&:capitalize).join
+end.freeze
+
 # If there are no options given, invoke help
 ARGV << "-h" if ARGV.empty?
 
@@ -19,9 +26,11 @@ options = Trollop.options do
   banner <<~EOS
     Command line interface to metadata-ci validation tools
 
+    Available checks:
+      * #{ALL_CHECKS.join("\n  * ")}
+
     Usage:
       check [options] -f <files>
-
   EOS
 
   opt :files, "Metadata files/directories to validate", type: :strings
@@ -34,25 +43,18 @@ if options[:with] && options[:without]
   exit 1
 end
 
-all_checks = Dir.glob(
-  File.expand_path("../../lib/check/*.rb", __FILE__)
-).map do |f|
-  next unless /\.rb$/ =~ f
-  File.basename(f).sub(/\.rb$/, "").split("_").map(&:capitalize).join
-end
-
 used_checks = if options[:with]
-                all_checks & options[:with]
+                ALL_CHECKS & options[:with]
               elsif options[:without]
-                all_checks - options[:without]
+                ALL_CHECKS - options[:without]
               else
-                all_checks
+                ALL_CHECKS
               end
 
 if used_checks.empty?
   $stderr.puts <<~EOS
     [ERROR] No valid checks specified.  Allowed checks are
-    * #{all_checks.join("\n* ")}
+      * #{ALL_CHECKS.join("\n  * ")}
     EOS
   exit 1
 end
