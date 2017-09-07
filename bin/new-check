@@ -1,0 +1,65 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# flush output immediately
+$stdout.sync = true
+
+require "erb"
+require "ostruct"
+require "pathname"
+
+def write_check(ch)
+  base =
+    ch.gsub(/([a-z])([A-Z])/, '\1 \2').split(" ").map(&:downcase).join("_")
+
+  newfile = Pathname.new(
+    File.expand_path("../../lib/check/#{base}.rb", __FILE__)
+  )
+
+  if newfile.exist?
+    $stderr.puts "ERROR: #{newfile} already exists."
+    return
+  end
+
+  File.open(newfile, "w") do |f|
+    f.write(
+      ERB.new(
+        File.read(File.expand_path("../../config/templates/check.rb.erb", __FILE__))
+        # https://stackoverflow.com/a/9734736
+      ).result(OpenStruct.new(name: ch).instance_eval { binding })
+    )
+  end
+
+  puts "Wrote new module #{ch} to #{newfile}."
+end
+
+def write_test(ch)
+  base =
+    ch.gsub(/([a-z])([A-Z])/, '\1 \2').split(" ").map(&:downcase).join("_")
+
+  testfile = Pathname.new(
+    File.expand_path("../../test/#{base}_test.rb", __FILE__)
+  )
+
+  if testfile.exist?
+    $stderr.puts "ERROR: #{testfile} already exists."
+    return
+  end
+
+  File.open(testfile, "w") do |f|
+    f.write(
+      ERB.new(
+        File.read(File.expand_path("../../config/templates/test.rb.erb", __FILE__))
+        # https://stackoverflow.com/a/9734736
+      ).result(OpenStruct.new(name: ch).instance_eval { binding })
+    )
+  end
+
+  puts "Wrote new test file to #{testfile}."
+end
+
+ARGV.each do |ch|
+  puts
+  write_check(ch)
+  write_test(ch)
+end

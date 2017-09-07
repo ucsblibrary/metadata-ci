@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+require File.expand_path("../../errors/metadata_error.rb", __FILE__)
+
+module Check
+  module <%= name %>
+    def self.about
+      "This is a short description of how the metadata should behave."
+    end
+
+    # @param [String, Array<String>] files
+    # @return [Array<EncodedEntity>]
+    def self.batch(*files)
+      files.map do |file|
+        # your stuff happens here
+      end.flatten.compact.select { |r| r.is_a? MetadataError }
+    end
+  end
+end

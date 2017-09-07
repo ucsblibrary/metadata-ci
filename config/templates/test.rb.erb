@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+require "minitest/autorun"
+require File.expand_path("../../lib/check.rb", __FILE__)
+
+class <%= name %>Test < MiniTest::Test
+  def test_good_fixture
+    # assert_empty(Check::<%= name %>.batch([]))
+  end
+
+  def test_bad_fixture
+    # refute_empty(Check::<%= name %>.batch([]))
+  end
+end

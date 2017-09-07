@@ -12,6 +12,18 @@ To add a new checker, create a new file in `lib/check` with a
 - `batch`: accepts an array of paths as its only parameter and returns
     an array of `MetadataError`s
 
+The `bin/new-check` script will get you started with skeleton modules
+based on the template in `config/check.rb.erb`:
+
+```
+$ bin/new-check HonkHonk Entities RightsStatement
+Wrote new module HonkHonk to /Users/alex/clones/metadata-ci/lib/check/honk_honk.rb.
+ERROR: /Users/alex/clones/metadata-ci/lib/check/entities.rb already exists.
+Wrote new module RightsStatement to /Users/alex/clones/metadata-ci/lib/check/rights_statement.rb.
+```
+
+Don’t forget to write tests for your module!
+
 ## CLI
 
 General usage:
