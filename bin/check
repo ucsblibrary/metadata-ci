@@ -19,6 +19,14 @@ ALL_CHECKS = Dir.glob(
   File.basename(f).sub(/\.rb$/, "").split("_").map(&:capitalize).join
 end.freeze
 
+DESCRIPTIONS = ALL_CHECKS.map do |ch|
+  begin
+    "* #{Util.bold("#{ch}:")} #{Object.const_get("Check::#{ch}").about}"
+  rescue NameError
+    "* #{Util.bold(ch)}"
+  end
+end.join("\n  ")
+
 # If there are no options given, invoke help
 ARGV << "-h" if ARGV.empty?
 
@@ -27,7 +35,7 @@ options = Trollop.options do
     Command line interface to metadata-ci validation tools
 
     Available checks:
-      * #{ALL_CHECKS.join("\n  * ")}
+      #{DESCRIPTIONS}
 
     Usage:
       check [options] -f <files>

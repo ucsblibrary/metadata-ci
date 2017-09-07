@@ -9,8 +9,11 @@ require File.expand_path("../../errors/invalid_value.rb", __FILE__)
 require File.expand_path("../../fields.rb", __FILE__)
 
 module Check
-  # Checks that controlled fields only use allowed values
   module ControlledVocabularies
+    def self.about
+      "Controlled vocabulary fields should only used allowed values."
+    end
+
     ALLOWED_MODELS = YAML.safe_load(
       File.read(
         File.expand_path("../../../config/allowed_models.yml", __FILE__)

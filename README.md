@@ -5,9 +5,12 @@ A CLI/library for validating ADRL metadata.
 ## Adding a new checker
 
 To add a new checker, create a new file in `lib/check` with a
-`Check::` submodule.  The submodule needs a `#batch` method that
-accepts an array of paths as its only parameter and returns an array
-of `MetadataError`s.
+`Check::` submodule.  The submodule needs two methods:
+
+- `about`: returns a string explaining what the check is enforcing
+
+- `batch`: accepts an array of paths as its only parameter and returns
+    an array of `MetadataError`s
 
 ## CLI
 
@@ -17,12 +20,12 @@ $ bin/check -h
 Command line interface to metadata-ci validation tools
 
 Available checks:
-  * ControlledVocabularies
-  * Date
-  * Encoding
-  * Entities
-  * Headers
-  * Schema
+  * ControlledVocabularies: Controlled vocabulary fields should only used allowed values.
+  * Date: Date values should conform to the W3C format (https://www.w3.org/TR/1998/NOTE-datetime-19980827).
+  * Encoding: Metadata files should be encoded as UTF-8.
+  * Entities: Metadata files should not contain HTML-encoded entities.
+  * Headers: CSV files should follow the specification in config/csv_headers.yml.erb.
+  * Schema: MODS XML files should validate against their schema.
 
 Usage:
   check [options] -f <files>

@@ -16,6 +16,10 @@ Metrics/MethodLength:
 Style/AsciiComments:
   Enabled: false
 
+Style/Documentation:
+  Exclude:
+    - 'lib/check/*.rb'
+
 Style/Lambda:
   EnforcedStyle: lambda
 

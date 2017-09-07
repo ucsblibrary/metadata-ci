@@ -5,8 +5,11 @@ require File.expand_path("../../errors/encoded_entity.rb", __FILE__)
 require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
 
 module Check
-  # Checks for encoded HTML entities
   module Entities
+    def self.about
+      "Metadata files should not contain HTML-encoded entities."
+    end
+
     ENTITY_PATTERNS = {
       "0" => "&%<str>s;",
       "1" => "&#%<str>s;",

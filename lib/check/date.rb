@@ -9,9 +9,12 @@ require File.expand_path("../../errors/invalid_date.rb", __FILE__)
 require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
 
 module Check
-  # Provides methods for checking the W3C-validity of dates in CSV and
-  # XML MODS metadata files
   module Date
+    def self.about
+      "Date values should conform to the W3C format "\
+      "(https://www.w3.org/TR/1998/NOTE-datetime-19980827)."
+    end
+
     INVALID_DATE_MSG =
       "%<locator>s: '%<value>s' is not W3C-valid "\
       "(https://www.w3.org/TR/1998/NOTE-datetime-19980827)."

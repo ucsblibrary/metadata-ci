@@ -3,9 +3,11 @@
 require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
 
 module Check
-  # Checks that files are encoded as UTF-8; see
-  # https://help.library.ucsb.edu/browse/DIGREPO-683
   module Encoding
+    def self.about
+      "Metadata files should be encoded as UTF-8."
+    end
+
     # @param [String] file Path to the file
     # @param [Encoding]
     def self.is?(file, encoding = ::Encoding::UTF_8)

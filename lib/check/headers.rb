@@ -7,8 +7,11 @@ require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
 require File.expand_path("../../fields.rb", __FILE__)
 
 module Check
-  # Checks that CSV files have valid headers
   module Headers
+    def self.about
+      "CSV files should follow the specification in config/csv_headers.yml.erb."
+    end
+
     # @param [String, Array<String>] files
     # @return [Array<InvalidHeader>]
     def self.batch(*files)
