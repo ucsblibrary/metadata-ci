@@ -17,9 +17,15 @@ based on the template in `config/check.rb.erb`:
 
 ```
 $ bin/new-check HonkHonk Entities RightsStatement
+
 Wrote new module HonkHonk to /Users/alex/clones/metadata-ci/lib/check/honk_honk.rb.
+Wrote new test file to /Users/alex/clones/metadata-ci/test/honk_honk_test.rb.
+
 ERROR: /Users/alex/clones/metadata-ci/lib/check/entities.rb already exists.
+ERROR: /Users/alex/clones/metadata-ci/test/entities_test.rb already exists.
+
 Wrote new module RightsStatement to /Users/alex/clones/metadata-ci/lib/check/rights_statement.rb.
+Wrote new test file to /Users/alex/clones/metadata-ci/test/rights_statement_test.rb.
 ```
 
 Don’t forget to write tests for your module!
