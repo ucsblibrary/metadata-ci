@@ -88,7 +88,7 @@ end
 
 $stderr.puts(errors.map do |e|
   <<~EOS
-    * #{Util.bold(e.file)}:
+    * (#{Util.bold(e.class)}) #{e.file}:
       #{e.problem}
 
   EOS
