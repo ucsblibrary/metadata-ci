@@ -59,7 +59,7 @@ GEM
       yard (~> 0.9)
     rainbow (2.2.2)
       rake
-    rake (12.0.0)
+    rake (12.1.0)
     rdf (2.2.9)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
