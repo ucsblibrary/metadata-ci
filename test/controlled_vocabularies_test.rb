@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "minitest/autorun"
-require File.expand_path("../../lib/check.rb", __FILE__)
+require File.expand_path("../../lib/metadata_ci.rb", __FILE__)
 
 class ControlledVocabulariesTest < MiniTest::Test
   def test_good_files
