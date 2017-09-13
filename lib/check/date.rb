@@ -3,7 +3,6 @@
 require "csv"
 require "date"
 require "mods"
-require "w3c_datetime"
 require "yaml"
 require File.expand_path("../../errors/invalid_date.rb", __FILE__)
 require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
@@ -110,7 +109,7 @@ module Check
 
     # @return [DateTime]
     def self.validate(datestring:, file:, formatting:)
-      W3cDatetime.parse(datestring)
+      parse_as_w3c(datestring)
     rescue ArgumentError, InvalidDate
       InvalidDate.new(
         file: file,
@@ -119,6 +118,46 @@ module Check
           formatting.merge(value: datestring)
         )
       )
+    end
+
+    W3REGEXP = /^
+                 (?<year>\d{4})
+                 (?<month>-?\d{2})?
+                 (?<day>-?\d{2})?
+                 (?<time>T?\d{2}:\d{2}:?\d{2}?\.?\d{2}?)?
+                 (?<offset>Z|[-+]\d{2}:\d{2})?
+               $/x
+
+    # Parse date string in http://www.w3.org/TR/NOTE-datetime format
+    #
+    # @param [String] date_str date represented as string in
+    #     http://www.w3.org/TR/NOTE-datetime format
+    # @return [DateTime]
+    def self.parse_as_w3c(date_str)
+      matches = date_str.match(W3REGEXP)
+      raise ArgumentError, "Bad string #{date_str}" if matches.nil?
+
+      captures = matches.named_captures
+
+      year = captures["year"].to_i
+      month = (captures["month"].delete("-").to_i unless captures["month"].nil?)
+      day = (captures["day"].delete("-").to_i unless captures["day"].nil?)
+      times = parse_hms(captures["time"])
+
+      params = [year, month, day, times, captures["offset"]].flatten.compact
+      DateTime.new(*params)
+    end
+
+    def self.parse_hms(capturestring)
+      return nil if capturestring.nil?
+
+      times = capturestring.delete("T").split(":")
+
+      hour = times.first.to_i
+      minute = times[1].to_i
+      second = (times[2].nil? ? 0 : times[2].to_f)
+
+      [hour, minute, second]
     end
   end
 end

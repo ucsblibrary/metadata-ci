@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/dunn/w3c_datetime.git
-  revision: dc98e11d47782b4971ab90c3711b23a89d04c7f5
-  ref: dc98e11d47782b4971ab90c3711b23a89d04c7f5
-  branch: errors
-  specs:
-    w3c_datetime (0.0.4)
-
 PATH
   remote: .
   specs:
@@ -72,7 +64,7 @@ GEM
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
-    ruby-progressbar (1.8.1)
+    ruby-progressbar (1.8.3)
     slop (3.6.0)
     thread_safe (0.3.6)
     trollop (2.1.2)
@@ -94,7 +86,6 @@ DEPENDENCIES
   rake
   rubocop (~> 0.49.0)
   trollop
-  w3c_datetime!
 
 BUNDLED WITH
    1.15.4
