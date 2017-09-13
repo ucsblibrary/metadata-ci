@@ -9,4 +9,8 @@ class MetadataError < StandardError
     @file = file
     @problem = problem
   end
+
+  def to_s
+    problem.to_s
+  end
 end
