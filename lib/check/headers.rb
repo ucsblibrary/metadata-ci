@@ -38,60 +38,14 @@ module Check
       [WrongEncoding.new(file: file, problem: e.message)]
     end
 
-    # All the CSV headers that have subfields
-    #
-    # @return [Array<Hash>]
-    def self.all_subfields
-      @all_subfields ||= Fields::CSV.map do |field|
-        next unless field.respond_to? :values
-        next unless field.values.first["subfields"]
-
-        field
-      end.compact
-    end
-
-    # All the CSV headers that have an order specified
-    #
-    # @return [Array<Hash>]
-    def self.ordered_fields
-      @ordered_fields ||= Fields::CSV.map do |field|
-        next unless field.respond_to? :values
-        next unless field.values.first["ordered"]
-
-        field
-      end.compact
-    end
-
-    # All the permissible values for a CSV header cell
-    #
-    # @return [Array<String>]
-    def self.all_fields
-      @all_fields ||= Fields::CSV.map do |field|
-        next field if field.is_a? String
-
-        field.map do |key, val|
-          next key unless val["subfields"]
-          subfield_strings(val["subfields"])
-        end
-      end.flatten.compact
-    end
-
-    # @param [Array] fields
-    # @return [Array<String>]
-    def self.subfield_strings(fields)
-      fields.map do |s|
-        next s unless s.respond_to? :keys
-        s.keys.first
-      end
-    end
-
     # @param [String] file
     # @param [Array] headers
     # @return [Array<InvalidHeader>]
     def self.check_required_subfields(file, headers)
-      all_subfields.map do |field|
+      Fields::CSV.all_subfields.map do |field|
         subs = field.values.first["subfields"]
-        next unless subfield_strings(subs).any? do |f|
+
+        next unless Fields::CSV.subfield_strings(subs).any? do |f|
           headers.map(&:to_s).include? f.to_s
         end
 
@@ -129,8 +83,10 @@ module Check
       #       'created_finish_qualifier' => { 'required' => true },
       #     },
       #   }, }
-      ordered_fields.map do |field_group|
-        subfield_keys = subfield_strings(field_group.values.first["subfields"])
+      Fields::CSV.ordered_fields.map do |field_group|
+        subfield_keys = Fields::CSV.subfield_strings(
+          field_group.values.first["subfields"]
+        )
 
         next unless subfield_keys.any? do |k|
           headers.map(&:to_s).include? k.to_s
@@ -157,7 +113,7 @@ module Check
     # @return [Array<InvalidHeader>]
     def self.check_undefined(file, headers)
       headers.map do |header|
-        next if all_fields.include? header.to_s
+        next if Fields::CSV.all_fields.include? header.to_s
 
         InvalidHeader.new(
           file: file,
@@ -170,7 +126,7 @@ module Check
     # @param [Array] headers
     # @return [Array<InvalidHeader>]
     def self.check_required(file, headers)
-      required = Fields::CSV.select do |header|
+      required = Fields::CSV.all.select do |header|
         next unless header.respond_to? :values
 
         header.values.first["required"]
