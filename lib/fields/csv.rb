@@ -60,7 +60,7 @@ module Fields::CSV
   def self.subfield_strings(fields)
     fields.map do |s|
       next s unless s.respond_to? :keys
-      s.keys.first
-    end
+      s.keys
+    end.flatten
   end
 end

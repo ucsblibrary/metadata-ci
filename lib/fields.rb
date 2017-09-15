@@ -3,6 +3,7 @@
 require File.expand_path("../fields/csv.rb", __FILE__)
 require File.expand_path("../fields/marcrel.rb", __FILE__)
 require File.expand_path("../fields/mods.rb", __FILE__)
+require File.expand_path("../fields/transformer.rb", __FILE__)
 require File.expand_path("../fields/uri.rb", __FILE__)
 
 # Parent module for metadata fields utility methods

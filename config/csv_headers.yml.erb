@@ -2,9 +2,6 @@
 - accession_number
 - alternative
 - citation
-- collection_accession_number
-- collection_id
-- collection_title
 - copyright_status
 - description
 - description_standard
@@ -41,10 +38,19 @@
 - work_type
 
 - access_policy:
+    transformer: single_valued
     required: true
 
 - type:
+    transformer: single_valued
     required: true
+
+- collection:
+    transformer: collection
+    subfields:
+      - collection_accession_number
+      - collection_id
+      - collection_title
 
 - issued:
     ordered: true
@@ -89,25 +95,12 @@
           required: true
 
 - note:
-    ordered: true
-    subfields:
-      - note_type:
-          required: true
-      - note:
-          required: true
+    typed: true
+    type_required: true
 
 - lc_subject:
-    ordered: true
-    subfields:
-      - lc_subject_type
-      - lc_subject:
-          required: true
+    typed: true
 
 <% Fields::MARCREL.keys.each do |field| %>
-- <%= field %>:
-    ordered: true
-    subfields:
-      - <%= field %>_type
-      - <%= field %>:
-          required: true
+- <%= field %>
 <% end %>
