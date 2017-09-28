@@ -60,6 +60,7 @@ module Fields
     interviewee:                           RDF::Vocab::MARCRelators.ive,
     interviewer:                           RDF::Vocab::MARCRelators.ivr,
     inventor:                              RDF::Vocab::MARCRelators.inv,
+    issuing_body:                          RDF::Vocab::MARCRelators.isb,
     landscape_architect:                   RDF::Vocab::MARCRelators.lsa,
     librettist:                            RDF::Vocab::MARCRelators.lbt,
     lighting_designer:                     RDF::Vocab::MARCRelators.lgd,
