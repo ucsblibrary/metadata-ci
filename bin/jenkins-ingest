@@ -35,6 +35,7 @@ sed -i 's|ezid_pass:|ezid_pass: REPLACE_ME|' config/secrets.yml
 
 export CI=1
 export RAILS_ENV=test
+export INGEST_DEBUG=1
 
 bin/wrap
 sleep 40
