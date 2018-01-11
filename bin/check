@@ -80,8 +80,10 @@ $stderr.puts
 errors = used_checks.map do |ch|
   begin
     Object.const_get("Check::#{ch}").batch(data)
-  rescue NameError
-    $stderr.puts "[ERROR] No check '#{ch}' defined"
+  rescue NameError => e
+    $stderr.puts "[ERROR] Check '#{ch}' undefined or failed to run."
+    $stderr.puts "#{e.class}: #{e.message}"
+    $stderr.puts e.backtrace
     exit 1
   end
 end.flatten.sort_by(&:file)
