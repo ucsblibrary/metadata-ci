@@ -51,6 +51,11 @@ if options[:with] && options[:without]
   exit 1
 end
 
+if options[:files].nil?
+  $stderr.puts "[ERROR] You must specify files with -f or --files"
+  exit 1
+end
+
 used_checks = if options[:with]
                 ALL_CHECKS & options[:with]
               elsif options[:without]
