@@ -25,12 +25,15 @@ module Check
 
       files.map do |file|
         paths_for(file).map do |path|
-          next if DATA_SOURCES.any? { |ds| ds.join(path.sub(%r{^\/}, "")).exist? }
+          next if DATA_SOURCES.any? do |ds|
+            full_path = ds.join(path.sub(%r{^\/}, ""))
+            full_path.exist? && !full_path.zero?
+          end
 
           MissingData.new(
             file: file,
-            problem: "#{path} doesn't exist "\
-                     "in any of the data source directories."
+            problem: "#{path} doesn't exist in any of the "\
+                     "data source directories (or is an empty file)."
           )
         end
       end.flatten.compact.select { |e| e.is_a? MetadataError }
