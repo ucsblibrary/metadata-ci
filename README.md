@@ -32,7 +32,14 @@ Don’t forget to write tests for your module!
 
 ## CLI
 
-General usage:
+To install:
+```
+git clone https://github.com/ucsblibrary/metadata-ci
+cd metadata-ci
+bundle install
+```
+
+General usage and command flags:
 ```
 $ bin/check -h
 Command line interface to metadata-ci validation tools
