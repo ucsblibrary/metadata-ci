@@ -19,5 +19,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "htmlentities"
   spec.add_dependency "mods"
   spec.add_dependency "nokogiri"
-  spec.add_dependency "rdf-vocab", ">= 2.0"
+  spec.add_dependency "rdf-vocab", "< 3"
 end
