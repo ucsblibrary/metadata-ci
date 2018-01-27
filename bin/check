@@ -38,7 +38,7 @@ options = Trollop.options do
       #{DESCRIPTIONS}
 
     Usage:
-      check [options] -f <files>
+      bin/check [options] -f <files>
   EOS
 
   opt :files, "Metadata files/directories to validate", type: :strings

@@ -32,6 +32,9 @@ Don’t forget to write tests for your module!
 
 ## CLI
 
+The CLI application requires a Ruby runtime installed (e.g., `brew install
+ruby`) and the Bundler tool (`gem install bundler`).
+
 To install:
 ```
 git clone https://github.com/ucsblibrary/metadata-ci
@@ -53,7 +56,7 @@ Available checks:
   * Schema: MODS XML files should validate against their schema.
 
 Usage:
-  check [options] -f <files>
+  bin/check [options] -f <files>
   -f, --files=<s+>      Metadata files/directories to validate
   -w, --with=<s+>       Only run the specified checks
   -i, --without=<s+>    Skip the specified checks
