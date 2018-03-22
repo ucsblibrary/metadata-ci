@@ -17,7 +17,7 @@ def write_check(ch)
   )
 
   if newfile.exist?
-    $stderr.puts "ERROR: #{newfile} already exists."
+    warn "ERROR: #{newfile} already exists."
     return
   end
 
@@ -42,7 +42,7 @@ def write_test(ch)
   )
 
   if testfile.exist?
-    $stderr.puts "ERROR: #{testfile} already exists."
+    warn "ERROR: #{testfile} already exists."
     return
   end
 
