@@ -47,12 +47,12 @@ options = Trollop.options do
 end
 
 if options[:with] && options[:without]
-  $stderr.puts "[ERROR] Cannot combine --with and --without"
+  warn "[ERROR] Cannot combine --with and --without"
   exit 1
 end
 
 if options[:files].nil?
-  $stderr.puts "[ERROR] You must specify files with -f or --files"
+  warn "[ERROR] You must specify files with -f or --files"
   exit 1
 end
 
@@ -65,7 +65,7 @@ used_checks = if options[:with]
               end
 
 if used_checks.empty?
-  $stderr.puts <<~EOS
+  warn <<~EOS
     [ERROR] No valid checks specified.  Allowed checks are
       * #{ALL_CHECKS.join("\n  * ")}
     EOS
@@ -74,16 +74,16 @@ end
 
 data = Util.find_paths(options[:files])
 
-$stderr.puts Util.bold("Running checks: #{used_checks.join(", ")}")
-$stderr.puts
+warn Util.bold("Running checks: #{used_checks.join(", ")}")
+warn
 
 errors = used_checks.map do |ch|
   begin
     Object.const_get("Check::#{ch}").batch(data)
   rescue NameError => e
-    $stderr.puts "[ERROR] Check '#{ch}' undefined or failed to run."
-    $stderr.puts "#{e.class}: #{e.message}"
-    $stderr.puts e.backtrace
+    warn "[ERROR] Check '#{ch}' undefined or failed to run."
+    warn "#{e.class}: #{e.message}"
+    warn e.backtrace
     exit 1
   end
 end.flatten.sort_by(&:file)
@@ -93,7 +93,7 @@ if errors.empty?
   exit 0
 end
 
-$stderr.puts(errors.map do |e|
+warn(errors.map do |e|
   <<~EOS
     * (#{Util.bold(e.class)}) #{e.file}:
       #{e.problem}

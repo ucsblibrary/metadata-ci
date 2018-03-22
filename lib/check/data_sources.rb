@@ -17,7 +17,7 @@ module Check
     # @return [Array<MetadataError>]
     def self.batch(files)
       if DATA_SOURCES.all? { |ds| !Dir.exist? ds }
-        $stderr.puts "#{Util.warn("WARNING:")} "\
+        warn "#{Util.warn("WARNING:")} "\
                      "None of the directories specified "\
                      "in config/data_sources.yml exist; skipping checks."
         return []
