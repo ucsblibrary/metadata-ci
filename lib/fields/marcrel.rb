@@ -21,6 +21,7 @@ module Fields
     cartographer:                          RDF::Vocab::MARCRelators.ctg,
     choreographer:                         RDF::Vocab::MARCRelators.chr,
     cinematographer:                       RDF::Vocab::MARCRelators.cng,
+    client:								   RDF::Vocab::MARCRelators.cli,
     # Deprecated
     # collaborator:                          RDF::Vocab::MARCRelators.clb,
     collector:                             RDF::Vocab::MARCRelators.col,
