@@ -41,6 +41,7 @@ module Fields
     creator:                               RDF::Vocab::MARCRelators.cre,
     curator_of_an_exhibition:              RDF::Vocab::MARCRelators.cur,
     dancer:                                RDF::Vocab::MARCRelators.dnc,
+    degree_grantor:                        RDF::Vocab::MARCRelators.dgg,
     degree_supervisor:                     RDF::Vocab::MARCRelators.dgs,
     delineator:                            RDF::Vocab::MARCRelators.dln,
     designer:                              RDF::Vocab::MARCRelators.dsr,
