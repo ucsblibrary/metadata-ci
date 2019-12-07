@@ -24,7 +24,7 @@ def write_check(ch)
   File.open(newfile, "w") do |f|
     f.write(
       ERB.new(
-        File.read(File.expand_path("../../config/templates/check.rb.erb", __FILE__))
+        File.read(File.expand_path("../config/templates/check.rb.erb", __dir__))
         # https://stackoverflow.com/a/9734736
       ).result(OpenStruct.new(name: ch).instance_eval { binding })
     )
@@ -49,7 +49,7 @@ def write_test(ch)
   File.open(testfile, "w") do |f|
     f.write(
       ERB.new(
-        File.read(File.expand_path("../../config/templates/test.rb.erb", __FILE__))
+        File.read(File.expand_path("../config/templates/test.rb.erb", __dir__))
         # https://stackoverflow.com/a/9734736
       ).result(OpenStruct.new(name: ch).instance_eval { binding })
     )

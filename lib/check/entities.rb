@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require "htmlentities"
-require File.expand_path("../../errors/encoded_entity.rb", __FILE__)
-require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
+require File.expand_path("../errors/encoded_entity.rb", __dir__)
+require File.expand_path("../errors/wrong_encoding.rb", __dir__)
 
 module Check
   module Entities
@@ -19,7 +19,7 @@ module Check
     def self.whitelist
       @whitelist ||= YAML.safe_load(
         File.read(
-          File.expand_path("../../../config/entity_whitelist.yml", __FILE__)
+          File.expand_path("../../config/entity_whitelist.yml", __dir__)
         )
       )
     end

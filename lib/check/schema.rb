@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require "net/http"
-require File.expand_path("../../errors/invalid_mods.rb", __FILE__)
-require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
+require File.expand_path("../errors/invalid_mods.rb", __dir__)
+require File.expand_path("../errors/wrong_encoding.rb", __dir__)
 
 module Check
   module Schema

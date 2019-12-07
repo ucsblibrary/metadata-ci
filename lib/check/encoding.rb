@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
+require File.expand_path("../errors/wrong_encoding.rb", __dir__)
 
 module Check
   module Encoding

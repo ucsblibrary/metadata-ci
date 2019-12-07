@@ -16,7 +16,7 @@ module Fields::URI
   # @param [String] str
   def self.check_uri(str)
     return if str.nil? || !looks_like_uri?(str)
-    return if str.strip =~ /\A#{::URI.regexp}\z/
+    return if str.strip =~ /\A#{::URI::DEFAULT_PARSER.make_regexp}\z/
 
     raise ArgumentError, "Invalid URI: #{str}"
   end

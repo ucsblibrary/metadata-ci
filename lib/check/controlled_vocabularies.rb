@@ -4,9 +4,9 @@ require "csv"
 require "mods"
 require "yaml"
 
-require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
-require File.expand_path("../../errors/invalid_value.rb", __FILE__)
-require File.expand_path("../../fields.rb", __FILE__)
+require File.expand_path("../errors/wrong_encoding.rb", __dir__)
+require File.expand_path("../errors/invalid_value.rb", __dir__)
+require File.expand_path("../fields.rb", __dir__)
 
 module Check
   module ControlledVocabularies
@@ -16,13 +16,13 @@ module Check
 
     ALLOWED_MODELS = YAML.safe_load(
       File.read(
-        File.expand_path("../../../config/allowed_models.yml", __FILE__)
+        File.expand_path("../../config/allowed_models.yml", __dir__)
       )
     ).freeze
 
     ALLOWED_LOCATIONS = YAML.safe_load(
       File.read(
-        File.expand_path("../../../config/allowed_locations.yml", __FILE__)
+        File.expand_path("../../config/allowed_locations.yml", __dir__)
       )
     ).freeze
 

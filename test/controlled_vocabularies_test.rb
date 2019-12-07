@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 require "minitest/autorun"
-require File.expand_path("../../lib/metadata_ci.rb", __FILE__)
+require File.expand_path("../lib/metadata_ci.rb", __dir__)
 
 class ControlledVocabulariesTest < MiniTest::Test
   def test_good_files
     errors = Check::ControlledVocabularies.batch(
-      [File.expand_path("../fixtures/csv/pamss045-invalid.csv", __FILE__),
-       File.expand_path("../fixtures/csv/pamss045.csv", __FILE__),
-       File.expand_path("../fixtures/mods/cusbmss228-p00001-invalid.xml",
-                        __FILE__),
-       File.expand_path("../fixtures/mods/cusbmss228-p00001.xml",
-                        __FILE__),]
+      [File.expand_path("fixtures/csv/pamss045-invalid.csv", __dir__),
+       File.expand_path("fixtures/csv/pamss045.csv", __dir__),
+       File.expand_path("fixtures/mods/cusbmss228-p00001-invalid.xml",
+                        __dir__),
+       File.expand_path("fixtures/mods/cusbmss228-p00001.xml",
+                        __dir__),]
     )
 
     assert_empty errors
@@ -19,7 +19,7 @@ class ControlledVocabulariesTest < MiniTest::Test
 
   def test_bad_csv
     errors = Check::ControlledVocabularies.batch(
-      [File.expand_path("../fixtures/csv/pamss045-uncontrolled.csv", __FILE__)]
+      [File.expand_path("fixtures/csv/pamss045-uncontrolled.csv", __dir__)]
     )
 
     assert_equal 2, errors.count
@@ -32,8 +32,8 @@ class ControlledVocabulariesTest < MiniTest::Test
 
   def test_bad_mods
     errors = Check::ControlledVocabularies.batch(
-      [File.expand_path("../fixtures/mods/cusbmss228-p00001-uncontrolled.xml",
-                        __FILE__),]
+      [File.expand_path("fixtures/mods/cusbmss228-p00001-uncontrolled.xml",
+                        __dir__)]
     )
 
     assert_equal 2, errors.count

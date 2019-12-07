@@ -4,8 +4,8 @@ require "csv"
 require "date"
 require "mods"
 require "yaml"
-require File.expand_path("../../errors/invalid_date.rb", __FILE__)
-require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
+require File.expand_path("../errors/invalid_date.rb", __dir__)
+require File.expand_path("../errors/wrong_encoding.rb", __dir__)
 
 module Check
   module Date
@@ -35,7 +35,7 @@ module Check
     def self.date_fields
       @date_fields ||= YAML.safe_load(
         File.read(
-          File.expand_path("../../../config/date_fields.yml", __FILE__)
+          File.expand_path("../../config/date_fields.yml", __dir__)
         )
       )
     end
@@ -52,7 +52,7 @@ module Check
         validate_row_at(file, row, i)
       end.flatten.compact.select { |r| r.is_a? InvalidDate }
     # most likely an encoding error
-    rescue ArgumentError => e
+    rescue CSV::MalformedCSVError => e
       [WrongEncoding.new(file: file, problem: e.message)]
     end
 
@@ -126,7 +126,7 @@ module Check
                  (?<day>-?\d{2})?
                  (?<time>T?\d{2}:\d{2}:?\d{2}?\.?\d{2}?)?
                  (?<offset>Z|[-+]\d{2}:\d{2})?
-               $/x
+               $/x.freeze
 
     # Parse date string in http://www.w3.org/TR/NOTE-datetime format
     #

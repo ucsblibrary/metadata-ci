@@ -2,9 +2,9 @@
 
 require "csv"
 
-require File.expand_path("../../errors/invalid_header.rb", __FILE__)
-require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
-require File.expand_path("../../fields.rb", __FILE__)
+require File.expand_path("../errors/invalid_header.rb", __dir__)
+require File.expand_path("../errors/wrong_encoding.rb", __dir__)
+require File.expand_path("../fields.rb", __dir__)
 
 module Check
   module Headers

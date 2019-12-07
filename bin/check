@@ -7,15 +7,16 @@ $stdout.sync = true
 require "bundler/setup"
 require "find"
 require "rubygems"
-require "trollop"
+require "optimist"
 
-require File.expand_path("../../lib/check.rb", __FILE__)
-require File.expand_path("../../lib/util.rb", __FILE__)
+require File.expand_path("../lib/check.rb", __dir__)
+require File.expand_path("../lib/util.rb", __dir__)
 
 ALL_CHECKS = Dir.glob(
-  File.expand_path("../../lib/check/*.rb", __FILE__)
+  File.expand_path("../lib/check/*.rb", __dir__)
 ).map do |f|
   next unless /\.rb$/ =~ f
+
   File.basename(f).sub(/\.rb$/, "").split("_").map(&:capitalize).join
 end.freeze
 
@@ -30,7 +31,7 @@ end.join("\n  ")
 # If there are no options given, invoke help
 ARGV << "-h" if ARGV.empty?
 
-options = Trollop.options do
+options = Optimist.options do
   banner <<~EOS
     Command line interface to metadata-ci validation tools
 
@@ -68,7 +69,7 @@ if used_checks.empty?
   warn <<~EOS
     [ERROR] No valid checks specified.  Allowed checks are
       * #{ALL_CHECKS.join("\n  * ")}
-    EOS
+  EOS
   exit 1
 end
 

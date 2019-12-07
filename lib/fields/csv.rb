@@ -2,7 +2,7 @@
 
 require "yaml"
 require "erb"
-require File.expand_path("../marcrel.rb", __FILE__)
+require File.expand_path("marcrel.rb", __dir__)
 
 # CSV Header methods
 module Fields::CSV
@@ -11,7 +11,7 @@ module Fields::CSV
     @all ||= YAML.safe_load(
       ::ERB.new(
         File.read(
-          File.expand_path("../../../config/csv_headers.yml.erb", __FILE__)
+          File.expand_path("../../config/csv_headers.yml.erb", __dir__)
         )
       ).result
     )
@@ -26,6 +26,7 @@ module Fields::CSV
 
       field.map do |key, val|
         next key unless val["subfields"]
+
         subfield_strings(val["subfields"])
       end
     end.flatten.compact
@@ -60,6 +61,7 @@ module Fields::CSV
   def self.subfield_strings(fields)
     fields.map do |s|
       next s unless s.respond_to? :keys
+
       s.keys.first
     end
   end

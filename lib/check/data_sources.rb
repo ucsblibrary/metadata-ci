@@ -2,15 +2,15 @@
 
 require "csv"
 require "mods"
-require File.expand_path("../../errors/missing_data.rb", __FILE__)
-require File.expand_path("../../errors/wrong_encoding.rb", __FILE__)
-require File.expand_path("../../util.rb", __FILE__)
+require File.expand_path("../errors/missing_data.rb", __dir__)
+require File.expand_path("../errors/wrong_encoding.rb", __dir__)
+require File.expand_path("../util.rb", __dir__)
 
 module Check
   # Checks that the files specified in the metadata actually exist
   module DataSources
     DATA_SOURCES = YAML.safe_load(
-      File.read(File.expand_path("../../../config/data_sources.yml", __FILE__))
+      File.read(File.expand_path("../../config/data_sources.yml", __dir__))
     ).map { |d| Pathname.new(d) }
 
     # @param [Array<String>] files

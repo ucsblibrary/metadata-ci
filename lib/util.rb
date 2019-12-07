@@ -15,6 +15,7 @@ module Util
 
       Find.find(arg).map do |path|
         next if File.directory?(path)
+
         path
       end
     end.flatten.compact
