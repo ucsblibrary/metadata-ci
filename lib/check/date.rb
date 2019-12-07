@@ -52,7 +52,7 @@ module Check
         validate_row_at(file, row, i)
       end.flatten.compact.select { |r| r.is_a? InvalidDate }
     # most likely an encoding error
-    rescue CSV::MalformedCSVError => e
+    rescue CSV::MalformedCSVError, ArgumentError => e
       [WrongEncoding.new(file: file, problem: e.message)]
     end
 
